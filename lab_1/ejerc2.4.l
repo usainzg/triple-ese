@@ -7,8 +7,8 @@
 [Pp][Rr][Oo][Cc][Ee][Dd][Uu][Rr][Ee] ;
 [Bb][Ee][Gg][Ii][Nn]                 ;
 [Ee][Nn][Dd]                         ;
-(\/\/.*)|(\{.*\})  ;
-[a-zA-Z]+(_?[a-zAZ0-9])*            { cont_ids++; }
+\/\/.+\n  ;
+[a-zA-Z]+(_?[a-zAZ0-9])*            { printf("ident: %d (%s)\n", ++cont_ids, yytext); }
 [0-9]+\.[0-9]+([eE][\+\-]?[0-9]+)?  { cont_reales++; }
 \n    				     ;
 .      				     ;

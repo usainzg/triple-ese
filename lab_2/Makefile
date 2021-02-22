@@ -11,8 +11,8 @@ traza.cpp: traza.l traza.hpp
 traza: traza.cpp 
 	g++ $(CFLAGS) -o $@ *.cpp -ll
 
-prueba:  traza ../prueba1.in ../prueba2.in ../pruebamala1.in ../pruebalab2.in
-	./traza <../prueba1.in
-	./traza <../prueba2.in
-	./traza <../pruebamala1.in
-	./traza <../pruebalab2.in
+prueba:  traza prueba1.in prueba2.in pruebamala1.in pruebalab2.in
+	./traza <prueba1.in
+	./traza <prueba2.in
+	./traza <pruebamala1.in
+	./traza <pruebalab2.in

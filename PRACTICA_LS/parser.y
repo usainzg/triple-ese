@@ -25,20 +25,37 @@
    declaración de tokens. Esto debe coincidir con tokens.l 
 */
 %token <str> TIDENTIFIER TINTEGER TDOUBLE
-%token <str> TMUL
-%token <str> TSEMIC TASSIG TLBRACE TRBRACE TCOMMA
-%token <str> RPROGRAM RBEGIN RENDPROGRAM
+%token <str> TMUL TDIV TPLUS TMINUS
+%token <str> TSEMIC TASSIG TLBRACE TRBRACE TLPAREN TRPAREN TCOMMA TDOT TCOLON
+%token <str> RPROGRAM RPROCEDURE
+%token <str> RFLOAT RINTEGER
+%token <str> RWHILE RIF RTHEN RFOREVER RDO RFINALLY REXIT
+%token <str> RIN ROUT
+%token <str> RREAD RPRINTLN
+%token <str> TCLT TCLE TCGT TCGE TEQUAL TNEQUAL
 
 /* 
    declaración de no terminales. Por ej:
+%type <str> prog
+%type <str> declaraciones
+%type <str> lista_de_ident
+%type <str> resto_lista_id
+%type <str> tipo
+%type <str> decl_de_subprogs
+%type <str> decl_de_subprograma
+%type <str> argumentos
+%type <str> lista_de_param
+%type <str> clase_par
+%type <str> resto_lis_de_param
+%type <str> lista_de_sentencias
+%type <str> sentencia
+%type <str> variable
 %type <str> expr
 */
-%type <str> program
-%type <str> listasentencias
-%type <str> sentencia
-%type <str> expr
 
-
+%nonassoc CLT TCLE TCGT TCGE TEQUAL TNEQUAL
+%left TPLUS TMINUS
+%left TMUL TDIV
 
 
 %start programa
@@ -62,26 +79,26 @@ resto_lista_id : TCOMMA TIDENTIFIER resto_lista_id
       | /* vacio */
       ;
 
-tipo : TINTEGER 
-      | TDOUBLE
+tipo : RINTEGER 
+      | RFLOAT
       ;
 
 decl_de_subprogs : decl_de_subprograma decl_de_subprogs
       | /* vacio */
       ;
 
-decl_de_subprograma : TPROC TIDENTIFIER argumentos declaraciones
+decl_de_subprograma : RPROCEDURE TIDENTIFIER argumentos declaraciones
       decl_de_subprogs TLBRACE lista_de_sentencias
       ;
 
-argumentos : TLPARENTHESIS lista_de_param TRPARENTHESIS
+argumentos : TLPAREN lista_de_param TRPAREN
       | /* vacio */
       ;
 
 lista_de_param : tipo clase_par lista_de_ident resto_lis_de_param
       ;
 
-clase_par : TGE | TLE | TGLE
+clase_par : TCGE | TCLE | TCGLE
       ;
 
 resto_lis_de_param : TSEMIC tipo clase_par lista_de_ident resto_lis_de_param
@@ -93,30 +110,30 @@ lista_de_sentencias : sentencia lista_de_sentencias
       ;
 
 sentencia : TIDENTIFIER TASSIG expr TSEMIC;
-      | TIF expr TLBRACE lista_de_sentencias TRBRACE TSEMIC
-      | TWHILE TFOREVER TLBRACE lista_de_sentencias TRBRACE
-      | TDO TLBRACE lista_de_sentencias TRBRACE TUNTIL expr TELSE TLBRACE lista_de_sentencias TRBRACE TSEMIC
+      | RIF expr TLBRACE lista_de_sentencias TRBRACE TSEMIC
+      | RWHILE RFOREVER TLBRACE lista_de_sentencias TRBRACE
+      | RDO TLBRACE lista_de_sentencias TRBRACE RUNTIL expr  TLBRACE lista_de_sentencias TRBRACE TSEMIC
       | TSKIP TIF expr TSEMIC
       | TEXIT TSEMIC
-      | TREAD TLPARENTHESIS variable TRPARENTHESIS TSEMIC
-      | TPRINT TLPARENTHESIS expr TRPARENTHESIS TSEMIC
+      | TREAD TLPAREN variable TRPAREN TSEMIC
+      | TPRINT TLPAREN expr TRPAREN TSEMIC
       ;
 
 variable : TIDENTIFIER
       ;
 
-expr : expr TEEQ expr
-      | expr TG expr
-      | expr TL expr
-      | expr TGE expr
-      | expr TLE expr
-      | expr TNE expr
+expr : expr TEQUAL expr
+      | expr TCLT expr
+      | expr TCLE expr
+      | expr TCGE expr
+      | expr TCLE expr
+      | expr TNEQUAL expr
       | expr TPLUS expr
       | expr TMINUS expr
-      | expr TMULT expr
+      | expr TMUL expr
       | expr TDIV expr
       | variable
       | TINTEGER
       | TDOUBLE
-      | TLPARENTHESIS expr TRPARENTHESIS
+      | TLPAREN expr TRPAREN
       ;

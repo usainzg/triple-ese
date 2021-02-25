@@ -26,17 +26,16 @@
 */
 %token <str> TIDENTIFIER TINTEGER TDOUBLE
 %token <str> TMUL TDIV TPLUS TMINUS
-%token <str> TSEMIC TASSIG TLBRACE TRBRACE TLPAREN TRPAREN TCOMMA TDOT TCOLON
+%token <str> TSEMIC TASSIG TLBRACE TRBRACE TLPAREN TRPAREN TCOMMA TDOT
 %token <str> RPROGRAM RPROCEDURE
 %token <str> RFLOAT RINTEGER
-%token <str> RWHILE RIF RTHEN RFOREVER RDO RFINALLY REXIT
-%token <str> RIN ROUT
+%token <str> RWHILE RIF RTHEN RFOREVER RDO RFINALLY RSKIP REXIT
 %token <str> RREAD RPRINTLN
 %token <str> TCLT TCLE TCGT TCGE TEQUAL TNEQUAL
 
 /* 
    declaración de no terminales. Por ej:
-%type <str> prog
+%type <str> program
 %type <str> declaraciones
 %type <str> lista_de_ident
 %type <str> resto_lista_id
@@ -98,7 +97,7 @@ argumentos : TLPAREN lista_de_param TRPAREN
 lista_de_param : tipo clase_par lista_de_ident resto_lis_de_param
       ;
 
-clase_par : TCGE | TCLE | TCGLE
+clase_par : TCGE | TCLE | TCGLE /* !!! TODO: preguntar esto !!! */
       ;
 
 resto_lis_de_param : TSEMIC tipo clase_par lista_de_ident resto_lis_de_param
@@ -113,10 +112,10 @@ sentencia : TIDENTIFIER TASSIG expr TSEMIC;
       | RIF expr TLBRACE lista_de_sentencias TRBRACE TSEMIC
       | RWHILE RFOREVER TLBRACE lista_de_sentencias TRBRACE
       | RDO TLBRACE lista_de_sentencias TRBRACE RUNTIL expr  TLBRACE lista_de_sentencias TRBRACE TSEMIC
-      | TSKIP TIF expr TSEMIC
-      | TEXIT TSEMIC
-      | TREAD TLPAREN variable TRPAREN TSEMIC
-      | TPRINT TLPAREN expr TRPAREN TSEMIC
+      | RSKIP TIF expr TSEMIC
+      | REXIT TSEMIC
+      | RREAD TLPAREN variable TRPAREN TSEMIC
+      | RPRINTLN TLPAREN expr TRPAREN TSEMIC
       ;
 
 variable : TIDENTIFIER

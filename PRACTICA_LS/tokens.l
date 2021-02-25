@@ -25,6 +25,7 @@ if                      TOKEN(RIF);
 then                    TOKEN(RTHEN);
 forever                 TOKEN(RFOREVER);
 do                      TOKEN(RDO);
+skip                    TOKEN(RSKIP);
 finally                 TOKEN(RFINALLY);
 read                    TOKEN(RREAD);
 println                 TOKEN(RPRINTLN);

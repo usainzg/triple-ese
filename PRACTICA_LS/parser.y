@@ -26,12 +26,12 @@
 */
 %token <str> TIDENTIFIER TINTEGER TDOUBLE
 %token <str> TMUL TDIV TPLUS TMINUS
-%token <str> TSEMIC TASSIG TLBRACE TRBRACE TLPAREN TRPAREN TCOMMA TDOT
+%token <str> TSEMIC TASSIG TLBRACE TRBRACE TLPAREN TRPAREN TCOMMA
 %token <str> RPROGRAM RPROCEDURE
 %token <str> RFLOAT RINTEGER
-%token <str> RWHILE RIF RTHEN RFOREVER RDO RFINALLY RSKIP REXIT
+%token <str> RWHILE RUNTIL RIF RFOREVER RDO RSKIP REXIT
 %token <str> RREAD RPRINTLN
-%token <str> TCLT TCLE TCGT TCGE TEQUAL TNEQUAL
+%token <str> TCGLE TCLT TCLE TCGT TCGE  TEQUAL TNEQUAL
 
 /* 
    declaración de no terminales. Por ej:
@@ -52,19 +52,15 @@
 %type <str> expr
 */
 
-%nonassoc CLT TCLE TCGT TCGE TEQUAL TNEQUAL
+%nonassoc TCLE TCGT TCGE TEQUAL TNEQUAL
 %left TPLUS TMINUS
 %left TMUL TDIV
-
 
 %start programa
 
 %%
 
-programa : RPROGRAM TIDENTIFIER 
-      declaraciones
-      decl_de_subprogs
-	   TLBRACE lista_de_sentencias TRBRACE
+programa : RPROGRAM TIDENTIFIER declaraciones decl_de_subprogs TLBRACE lista_de_sentencias TRBRACE
       ;
 
 declaraciones : tipo lista_de_ident TSEMIC declaraciones
@@ -112,7 +108,7 @@ sentencia : TIDENTIFIER TASSIG expr TSEMIC;
       | RIF expr TLBRACE lista_de_sentencias TRBRACE TSEMIC
       | RWHILE RFOREVER TLBRACE lista_de_sentencias TRBRACE
       | RDO TLBRACE lista_de_sentencias TRBRACE RUNTIL expr  TLBRACE lista_de_sentencias TRBRACE TSEMIC
-      | RSKIP TIF expr TSEMIC
+      | RSKIP RIF expr TSEMIC
       | REXIT TSEMIC
       | RREAD TLPAREN variable TRPAREN TSEMIC
       | RPRINTLN TLPAREN expr TRPAREN TSEMIC

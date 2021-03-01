@@ -19,14 +19,13 @@ program	                TOKEN(RPROGRAM);
 int                     TOKEN(RINTEGER);
 float		            TOKEN(RFLOAT);
 while		            TOKEN(RWHILE);
+until                   TOKEN(RUNTIL);
 exit		            TOKEN(REXIT);
 proc	                TOKEN(RPROCEDURE);	
 if                      TOKEN(RIF);
-then                    TOKEN(RTHEN);
 forever                 TOKEN(RFOREVER);
 do                      TOKEN(RDO);
 skip                    TOKEN(RSKIP);
-finally                 TOKEN(RFINALLY);
 read                    TOKEN(RREAD);
 println                 TOKEN(RPRINTLN);
 
@@ -37,14 +36,12 @@ println                 TOKEN(RPRINTLN);
 ")"						TOKEN(TRPAREN);
 ","						TOKEN(TCOMMA);
 "="                     TOKEN(TASSIG);
-"."						TOKEN(TDOT);
-":"						TOKEN(TCOLON);
 ";"                     TOKEN(TSEMIC);
+"<=>"                   TOKEN(TCGLE);
 "<"						TOKEN(TCLT);
 "<="					TOKEN(TCLE);
 ">"						TOKEN(TCGT);
 ">="					TOKEN(TCGE);
-"<=>"                   TOKEN(TCGLE)
 "=="					TOKEN(TEQUAL);
 "/="					TOKEN(TNEQUAL);
 "/"						TOKEN(TDIV);
@@ -53,9 +50,9 @@ println                 TOKEN(RPRINTLN);
 "*"                     TOKEN(TMUL);
 
 
-\/\/.+\n                ;
-
 [ \t\n]                 ;
+
+\[\*+([*][^*\]]|[^*])*\*\]  printf("\nCOMENTARIO MULTI\n");
 
 [a-zA-Z]+(_?[a-zAZ0-9])*    TOKEN(TIDENTIFIER) ; 
 [0-9]+\.[0-9]+([eE][\+\-]?[0-9]+)?          TOKEN(TDOUBLE);

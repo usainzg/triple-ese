@@ -55,13 +55,13 @@ println                 TOKEN(RPRINTLN);
 "*"                     TOKEN(TMUL);
 
 
-(\[\*)([^*]|\*+[^*\]])*(\*+\])  printf("COMENTARIO MULTI\n");
-#[^#\n]*\n                      printf("COMENTARIO LINEA\n");
+(\[\*)([^*]|\*+[^*\]])*(\*+\])  ;
+#[^#\n]*\n                      ;
 
-{letra}+(_?{letra}|{digito})*    TOKEN(TIDENTIFIER) ; 
-{digito}+\.{digito}+([eE][\+\-]?{digito}+)?          TOKEN(TDOUBLE);
-{digito}+                  TOKEN(TINTEGER); 
+{letra}+(_?{letra}|{digito})*                   TOKEN(TIDENTIFIER) ; 
+{digito}+\.{digito}+([eE][\+\-]?{digito}+)?     TOKEN(TDOUBLE);
+{digito}+                                       TOKEN(TINTEGER); 
 
-[ \t\n]                 ;
+[ \t\n]                         ;
 .                       { cout << "Token desconocido: " << yytext << endl; yyterminate();}
 %%

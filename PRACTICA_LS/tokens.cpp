@@ -1018,13 +1018,13 @@ case 33:
 /* rule 33 can match eol */
 YY_RULE_SETUP
 #line 58 "tokens.l"
-printf("COMENTARIO MULTI\n");
+;
 	YY_BREAK
 case 34:
 /* rule 34 can match eol */
 YY_RULE_SETUP
 #line 59 "tokens.l"
-printf("COMENTARIO LINEA\n");
+;
 	YY_BREAK
 case 35:
 YY_RULE_SETUP

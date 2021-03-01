@@ -29,7 +29,7 @@
 %token <str> TSEMIC TASSIG TLBRACE TRBRACE TLPAREN TRPAREN TCOMMA
 %token <str> RPROGRAM RPROCEDURE
 %token <str> RFLOAT RINTEGER
-%token <str> RWHILE RUNTIL RIF RFOREVER RDO RSKIP REXIT
+%token <str> RWHILE RUNTIL RIF RELSE RFOREVER RDO RSKIP REXIT
 %token <str> RREAD RPRINTLN
 %token <str> TCGLE TCLT TCLE TCGT TCGE  TEQUAL TNEQUAL
 
@@ -107,7 +107,7 @@ lista_de_sentencias : sentencia lista_de_sentencias
 sentencia : TIDENTIFIER TASSIG expr TSEMIC;
       | RIF expr TLBRACE lista_de_sentencias TRBRACE TSEMIC
       | RWHILE RFOREVER TLBRACE lista_de_sentencias TRBRACE
-      | RDO TLBRACE lista_de_sentencias TRBRACE RUNTIL expr  TLBRACE lista_de_sentencias TRBRACE TSEMIC
+      | RDO TLBRACE lista_de_sentencias TRBRACE RUNTIL expr RELSE TLBRACE lista_de_sentencias TRBRACE TSEMIC
       | RSKIP RIF expr TSEMIC
       | REXIT TSEMIC
       | RREAD TLPAREN variable TRPAREN TSEMIC
@@ -118,8 +118,8 @@ variable : TIDENTIFIER
       ;
 
 expr : expr TEQUAL expr
+      | expr TCGT expr
       | expr TCLT expr
-      | expr TCLE expr
       | expr TCGE expr
       | expr TCLE expr
       | expr TNEQUAL expr

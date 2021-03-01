@@ -27,6 +27,7 @@ until                   TOKEN(RUNTIL);
 exit		            TOKEN(REXIT);
 proc	                TOKEN(RPROCEDURE);	
 if                      TOKEN(RIF);
+else                    TOKEN(RELSE);
 forever                 TOKEN(RFOREVER);
 do                      TOKEN(RDO);
 skip                    TOKEN(RSKIP);
@@ -56,7 +57,7 @@ float		            TOKEN(RFLOAT);
 "*"                     TOKEN(TMUL);
 
 
-(\[\*)[^*]*[^*\]]*(\*\])  printf("COMENTARIO MULTI\n");
+(\[\*)([^*]|\*+[^*\]])*(\*+\])  printf("COMENTARIO MULTI\n");
 #[^#\n]*\n                      printf("COMENTARIO LINEA\n");
 
 {letra}+(_?{letra}|{digito})*    TOKEN(TIDENTIFIER) ; 

@@ -83,7 +83,7 @@ decl_de_subprogs : decl_de_subprograma decl_de_subprogs
       ;
 
 decl_de_subprograma : RPROCEDURE TIDENTIFIER argumentos declaraciones
-      decl_de_subprogs TLBRACE lista_de_sentencias
+      decl_de_subprogs TLBRACE lista_de_sentencias TRBRACE
       ;
 
 argumentos : TLPAREN lista_de_param TRPAREN

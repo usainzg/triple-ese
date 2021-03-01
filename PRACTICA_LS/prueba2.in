@@ -22,9 +22,8 @@ program ejemplo_con_nombre_muy_largo
 				if resul < 0 { exit; };			
 				println(iteraciones);	
 			};		#fin del do
-	    	};  #fin del if
-
-	 } # fin de proc
+	    };  #fin del if
+	} # fin de proc
 
    {
    read(a); read(b);

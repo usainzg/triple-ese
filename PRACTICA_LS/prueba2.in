@@ -1,7 +1,7 @@
-program ejemplo_con_nombre_muy_largo {
+program ejemplo_con_nombre_muy_largo
 
  int a, b, c ;
- float: d, e ;
+ float d, e ;
  [* esto es un **
  comentario multilinea *]
 

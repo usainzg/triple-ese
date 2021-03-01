@@ -374,8 +374,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 42
-#define YY_END_OF_BUFFER 43
+#define YY_NUM_RULES 40
+#define YY_END_OF_BUFFER 41
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -385,16 +385,16 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[100] =
     {   0,
-        0,    0,   43,   41,   40,   40,   41,   19,   20,   34,
-       32,   21,   33,   31,   39,   23,   25,   22,   27,   37,
-       41,   37,   37,   37,   37,   37,   37,   37,   37,   37,
-       17,   18,    0,   36,   30,    0,   39,   26,   29,   28,
-       37,   37,    0,    0,   11,   37,   37,   37,   37,    8,
-       37,   37,   37,   37,   37,   37,   38,   24,    0,    0,
-       37,   37,   37,   37,    2,   37,   37,   37,   37,   37,
-       37,    0,   35,    9,    6,   37,   37,   37,    7,   37,
-       13,   12,   37,   37,    0,   38,    3,   37,   37,   37,
-        5,    4,   37,   37,   37,   10,   14,    1,    0
+        0,    0,   41,   39,   38,   38,   39,   17,   18,   32,
+       30,   19,   31,   29,   37,   21,   23,   20,   25,   35,
+       39,   35,   35,   35,   35,   35,   35,   35,   35,   35,
+       15,   16,    0,   34,   28,    0,   37,   24,   27,   26,
+       35,   35,    0,    0,   11,   35,   35,   35,   35,    8,
+       35,   35,   35,   35,   35,   35,   36,   22,    0,    0,
+       35,   35,   35,   35,    2,   35,   35,   35,   35,   35,
+       35,    0,   33,    9,    6,   35,   35,   35,    7,   35,
+       13,   12,   35,   35,    0,   36,    3,   35,   35,   35,
+        5,    4,   35,   35,   35,   10,   14,    1,    0
 
     } ;
 
@@ -546,11 +546,11 @@ static yyconst flex_int16_t yy_chk[297] =
     } ;
 
 /* Table of booleans, true if rule could match eol. */
-static yyconst flex_int32_t yy_rule_can_match_eol[43] =
+static yyconst flex_int32_t yy_rule_can_match_eol[41] =
     {   0,
 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 
-    1, 0, 0,     };
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 
+    0,     };
 
 static yy_state_type yy_last_accepting_state;
 static char *yy_last_accepting_cpos;
@@ -926,148 +926,138 @@ TOKEN(RPRINTLN);
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 36 "tokens.l"
-TOKEN(RINTEGER);
+#line 38 "tokens.l"
+TOKEN(TLBRACE);
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 37 "tokens.l"
-TOKEN(RFLOAT);
+#line 39 "tokens.l"
+TOKEN(TRBRACE);
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 40 "tokens.l"
-TOKEN(TLBRACE);
+TOKEN(TLPAREN);
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
 #line 41 "tokens.l"
-TOKEN(TRBRACE);
+TOKEN(TRPAREN);
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
 #line 42 "tokens.l"
-TOKEN(TLPAREN);
+TOKEN(TCOMMA);
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
 #line 43 "tokens.l"
-TOKEN(TRPAREN);
+TOKEN(TASSIG);
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
 #line 44 "tokens.l"
-TOKEN(TCOMMA);
+TOKEN(TSEMIC);
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
 #line 45 "tokens.l"
-TOKEN(TASSIG);
+TOKEN(TCGLE);
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 #line 46 "tokens.l"
-TOKEN(TSEMIC);
+TOKEN(TCLT);
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 #line 47 "tokens.l"
-TOKEN(TCGLE);
+TOKEN(TCLE);
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 #line 48 "tokens.l"
-TOKEN(TCLT);
+TOKEN(TCGT);
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 #line 49 "tokens.l"
-TOKEN(TCLE);
+TOKEN(TCGE);
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 #line 50 "tokens.l"
-TOKEN(TCGT);
+TOKEN(TEQUAL);
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 #line 51 "tokens.l"
-TOKEN(TCGE);
+TOKEN(TNEQUAL);
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 #line 52 "tokens.l"
-TOKEN(TEQUAL);
+TOKEN(TDIV);
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 #line 53 "tokens.l"
-TOKEN(TNEQUAL);
+TOKEN(TPLUS);
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 #line 54 "tokens.l"
-TOKEN(TDIV);
+TOKEN(TMINUS);	
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 #line 55 "tokens.l"
-TOKEN(TPLUS);
-	YY_BREAK
-case 33:
-YY_RULE_SETUP
-#line 56 "tokens.l"
-TOKEN(TMINUS);	
-	YY_BREAK
-case 34:
-YY_RULE_SETUP
-#line 57 "tokens.l"
 TOKEN(TMUL);
 	YY_BREAK
-case 35:
-/* rule 35 can match eol */
+case 33:
+/* rule 33 can match eol */
 YY_RULE_SETUP
-#line 60 "tokens.l"
+#line 58 "tokens.l"
 printf("COMENTARIO MULTI\n");
 	YY_BREAK
-case 36:
-/* rule 36 can match eol */
+case 34:
+/* rule 34 can match eol */
+YY_RULE_SETUP
+#line 59 "tokens.l"
+printf("COMENTARIO LINEA\n");
+	YY_BREAK
+case 35:
 YY_RULE_SETUP
 #line 61 "tokens.l"
-printf("COMENTARIO LINEA\n");
+TOKEN(TIDENTIFIER) ; 
+	YY_BREAK
+case 36:
+YY_RULE_SETUP
+#line 62 "tokens.l"
+TOKEN(TDOUBLE);
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
 #line 63 "tokens.l"
-TOKEN(TIDENTIFIER) ; 
+TOKEN(TINTEGER); 
 	YY_BREAK
 case 38:
+/* rule 38 can match eol */
 YY_RULE_SETUP
-#line 64 "tokens.l"
-TOKEN(TDOUBLE);
+#line 65 "tokens.l"
+;
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 65 "tokens.l"
-TOKEN(TINTEGER); 
-	YY_BREAK
-case 40:
-/* rule 40 can match eol */
-YY_RULE_SETUP
-#line 67 "tokens.l"
-;
-	YY_BREAK
-case 41:
-YY_RULE_SETUP
-#line 68 "tokens.l"
+#line 66 "tokens.l"
 { cout << "Token desconocido: " << yytext << endl; yyterminate();}
 	YY_BREAK
-case 42:
+case 40:
 YY_RULE_SETUP
-#line 69 "tokens.l"
+#line 67 "tokens.l"
 ECHO;
 	YY_BREAK
-#line 1071 "tokens.cpp"
+#line 1061 "tokens.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2035,10 +2025,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 69 "tokens.l"
-
-
-
+#line 67 "tokens.l"
 
 /* A Bison parser, made by GNU Bison 2.3.  */
 

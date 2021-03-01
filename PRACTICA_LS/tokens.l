@@ -33,8 +33,6 @@ do                      TOKEN(RDO);
 skip                    TOKEN(RSKIP);
 read                    TOKEN(RREAD);
 println                 TOKEN(RPRINTLN);
-int                     TOKEN(RINTEGER);
-float		            TOKEN(RFLOAT);
 
 
 "{"			            TOKEN(TLBRACE);
@@ -67,5 +65,3 @@ float		            TOKEN(RFLOAT);
 [ \t\n]                 ;
 .                       { cout << "Token desconocido: " << yytext << endl; yyterminate();}
 %%
-
-

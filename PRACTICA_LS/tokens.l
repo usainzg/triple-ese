@@ -14,6 +14,10 @@
 
 %}
 
+%option nounput
+digito [0-9]
+letra [a-zA-Z]
+
 %%
 program	                TOKEN(RPROGRAM);
 int                     TOKEN(RINTEGER);
@@ -28,6 +32,8 @@ do                      TOKEN(RDO);
 skip                    TOKEN(RSKIP);
 read                    TOKEN(RREAD);
 println                 TOKEN(RPRINTLN);
+int                     TOKEN(RINTEGER);
+float		            TOKEN(RFLOAT);
 
 
 "{"			            TOKEN(TLBRACE);
@@ -50,14 +56,14 @@ println                 TOKEN(RPRINTLN);
 "*"                     TOKEN(TMUL);
 
 
+(\[\*)[^*]*[^*\]]*(\*\])  printf("COMENTARIO MULTI\n");
+#[^#\n]*\n                      printf("COMENTARIO LINEA\n");
+
+{letra}+(_?{letra}|{digito})*    TOKEN(TIDENTIFIER) ; 
+{digito}+\.{digito}+([eE][\+\-]?{digito}+)?          TOKEN(TDOUBLE);
+{digito}+                  TOKEN(TINTEGER); 
+
 [ \t\n]                 ;
-
-\[\*+([*][^*\]]|[^*])*\*\]  printf("\nCOMENTARIO MULTI\n");
-
-[a-zA-Z]+(_?[a-zAZ0-9])*    TOKEN(TIDENTIFIER) ; 
-[0-9]+\.[0-9]+([eE][\+\-]?[0-9]+)?          TOKEN(TDOUBLE);
-[0-9]+                  TOKEN(TINTEGER); 
-
 .                       { cout << "Token desconocido: " << yytext << endl; yyterminate();}
 %%
 

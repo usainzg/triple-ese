@@ -16,5 +16,8 @@ tokens.cpp: tokens.l parser.hpp
 parser: parser.cpp main.cpp tokens.cpp
 	g++ $(CFLAGS) -o $@ *.cpp 
 
-prueba:  parser prueba2.in
-	./parser <prueba2.in
+prueba:  parser Pruebas/PruebaBuena1.in Pruebas/PruebaBuena2.in Pruebas/PruebaMala1.in Pruebas/PruebaMala2.in
+	./parser <Pruebas/PruebaBuena1.in
+	./parser <Pruebas/PruebaBuena2.in
+	./parser <Pruebas/PruebaMala1.in
+	./parser <Pruebas/PruebaMala2.in

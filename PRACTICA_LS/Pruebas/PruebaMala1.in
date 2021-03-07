@@ -1,5 +1,5 @@
 program ejemplo_con_nombre_muy_largo
-
+ # prueba mala con "integer" en vez de "int"
  integer a, b, c ;
  float d, e ;
  [* esto es un **

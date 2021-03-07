@@ -20,6 +20,13 @@ program programa_ejemplo2
         if n2 <= n1 {
             n3 = (n1 * n1) + n2;
         }; # fin del if
+
+        while forever {
+			read(var1);
+			println(var1);
+			exit;
+		}; # fin de while forever
+    
 	} # fin de proc mult
 
 {

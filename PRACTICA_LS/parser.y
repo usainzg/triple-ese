@@ -93,7 +93,7 @@ argumentos : TLPAREN lista_de_param TRPAREN
 lista_de_param : tipo clase_par lista_de_ident resto_lis_de_param
       ;
 
-clase_par : TCGE | TCLE | TCGLE /* !!! TODO: preguntar esto !!! */
+clase_par : TCGE | TCLE | TCGLE
       ;
 
 resto_lis_de_param : TSEMIC tipo clase_par lista_de_ident resto_lis_de_param
@@ -106,7 +106,7 @@ lista_de_sentencias : sentencia lista_de_sentencias
 
 sentencia : TIDENTIFIER TASSIG expr TSEMIC;
       | RIF expr TLBRACE lista_de_sentencias TRBRACE TSEMIC
-      | RWHILE RFOREVER TLBRACE lista_de_sentencias TRBRACE
+      | RWHILE RFOREVER TLBRACE lista_de_sentencias TRBRACE TSEMIC
       | RDO TLBRACE lista_de_sentencias TRBRACE RUNTIL expr RELSE TLBRACE lista_de_sentencias TRBRACE TSEMIC
       | RSKIP RIF expr TSEMIC
       | REXIT TSEMIC

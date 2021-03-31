@@ -74,37 +74,38 @@ program : RPROGRAM { codigo.anadirInstruccion("inicio;" ) ;}
    };
 
 decls : /*blank*/ {}
-      | decls decl {} 
-      ;
+   | decls decl {} 
+   ;
 
 decl : RVAR list TCOLON type TSEMIC {
-         codigo.anadirDeclaraciones(*$2,*$4);
-         delete $2; delete $4 ;
-        }
+      codigo.anadirDeclaraciones(*$2,*$4);
+      delete $2; delete $4 ;
+   }
 
 type : RFLOAT 
-     | RINTEGER 
-     ;
+   | RINTEGER 
+   ;
 
 list : ident {
-         $$ = new vector<string> ; 
-	     $$->push_back(*$1);
-        }
-     | list TCOMMA ident { 
-         $$ = $1 ;
-         $$->push_back(*$3);
-        } 
-     ;
+      $$ = new vector<string> ; 
+      $$->push_back(*$1);
+   }
+   | list TCOMMA ident { 
+      $$ = $1 ;
+      $$->push_back(*$3);
+   } 
+   ;
 
 stmts : stmt TSEMIC
-      | stmts stmt TSEMIC
-      ;
+   | stmts stmt TSEMIC
+   ;
 
 stmt : ident TASSIG expr { 
       codigo.anadirInstruccion(*$1 + *$2 + $3->str + ";") ; 
     	delete $1 ; delete $3;
    }
 	
+   /* Implementacion de IF sin ELSE */
    | RIF expr RTHEN M stmts M RENDIF
    {
 	   codigo.completarInstrucciones($2->trues, $4) ;
@@ -133,73 +134,71 @@ stmt : ident TASSIG expr {
 	};
 
 M:  { $$ = codigo.obtenRef() ; }
-	;
+   ;
  
 N:  { $$ = new vector<int>;
       $$->push_back(codigo.obtenRef()) ;
       codigo.anadirInstruccion("goto"); }
-	;
+   ;
 
 expr : ident   { $$ = new expresionstruct; $$->str = *$1; }
-     | numeric { $$ = new expresionstruct; $$->str = *$1; }
-     | TLPAREN expr TRPAREN { $$ = $2; }
-
-     | expr TPLUS expr  { $$ = new expresionstruct;
-			 *$$ = makearithmetic($1->str,*$2,$3->str) ;
-			delete $1; delete $3; }
-     | expr TMINUS expr { $$ = new expresionstruct;
-			 *$$ = makearithmetic($1->str,*$2,$3->str) ;
-			delete $1; delete $3; }
-     | expr TMUL expr   { $$ = new expresionstruct;
-			 *$$ = makearithmetic($1->str,*$2,$3->str) ;
-			delete $1; delete $3; }
-     | expr TDIV expr   {$$ = new expresionstruct;
-			 *$$ = makearithmetic($1->str,*$2,$3->str) ;
-			delete $1; delete $3; }
-     | expr TCEQ expr { $$ = new expresionstruct;
-			 *$$ = makecomparison($1->str,*$2,$3->str) ; 
-			delete $1; delete $3; }
-     | expr TCNE expr { $$ = new expresionstruct;
-			 *$$ = makecomparison($1->str,*$2,$3->str) ; 
-			delete $1; delete $3; }
-     | expr TCLT expr { $$ = new expresionstruct;
-			 *$$ = makecomparison($1->str,*$2,$3->str) ; 
-			delete $1; delete $3; }
-     | expr TCLE expr { $$ = new expresionstruct;
-			 *$$ = makecomparison($1->str,*$2,$3->str) ; 
-			delete $1; delete $3; }
-     | expr TCGT expr { $$ = new expresionstruct;
-			 *$$ = makecomparison($1->str,*$2,$3->str) ; 
-			delete $1; delete $3; }
-     | expr TCGE expr { $$ = new expresionstruct;
-			 *$$ = makecomparison($1->str,*$2,$3->str) ; 
-			delete $1; delete $3; }
-     ;
+   | numeric { $$ = new expresionstruct; $$->str = *$1; }
+   | TLPAREN expr TRPAREN { $$ = $2; }
+   | expr TPLUS expr  { $$ = new expresionstruct;
+      *$$ = makearithmetic($1->str,*$2,$3->str) ;
+      delete $1; delete $3; }
+   | expr TMINUS expr { $$ = new expresionstruct;
+      *$$ = makearithmetic($1->str,*$2,$3->str) ;
+      delete $1; delete $3; }
+   | expr TMUL expr   { $$ = new expresionstruct;
+      *$$ = makearithmetic($1->str,*$2,$3->str) ;
+      delete $1; delete $3; }
+   | expr TDIV expr   {$$ = new expresionstruct;
+      *$$ = makearithmetic($1->str,*$2,$3->str) ;
+      delete $1; delete $3; }
+   | expr TCEQ expr { $$ = new expresionstruct;
+      *$$ = makecomparison($1->str,*$2,$3->str) ; 
+      delete $1; delete $3; }
+   | expr TCNE expr { $$ = new expresionstruct;
+      *$$ = makecomparison($1->str,*$2,$3->str) ; 
+      delete $1; delete $3; }
+   | expr TCLT expr { $$ = new expresionstruct;
+      *$$ = makecomparison($1->str,*$2,$3->str) ; 
+      delete $1; delete $3; }
+   | expr TCLE expr { $$ = new expresionstruct;
+      *$$ = makecomparison($1->str,*$2,$3->str) ; 
+      delete $1; delete $3; }
+   | expr TCGT expr { $$ = new expresionstruct;
+      *$$ = makecomparison($1->str,*$2,$3->str) ; 
+      delete $1; delete $3; }
+   | expr TCGE expr { $$ = new expresionstruct;
+      *$$ = makecomparison($1->str,*$2,$3->str) ; 
+      delete $1; delete $3; }
+   ;
 
 ident : TIDENTIFIER  { $$ = $1 ; }
-      ;
+   ;
 
 numeric : TINTEGER  { $$ = $1; }
-        | TDOUBLE   { $$ = $1; }
-        ;
-
+   | TDOUBLE   { $$ = $1; }
+   ;
 %%
 
 expresionstruct makecomparison(std::string &s1, std::string &s2, std::string &s3) {
-  expresionstruct tmp ; 
-  tmp.trues.push_back(codigo.obtenRef()) ;
-  tmp.falses.push_back(codigo.obtenRef()+1) ;
-  codigo.anadirInstruccion("if " + s1 + s2 + s3 + " goto") ;
-  codigo.anadirInstruccion("goto") ;
-  return tmp ;
+   expresionstruct tmp ; 
+   tmp.trues.push_back(codigo.obtenRef()) ;
+   tmp.falses.push_back(codigo.obtenRef()+1) ;
+   codigo.anadirInstruccion("if " + s1 + s2 + s3 + " goto") ;
+   codigo.anadirInstruccion("goto") ;
+   return tmp ;
 }
 
 
 expresionstruct makearithmetic(std::string &s1, std::string &s2, std::string &s3) {
-  expresionstruct tmp ; 
-  tmp.str = codigo.nuevoId() ;
-  codigo.anadirInstruccion(tmp.str + ":=" + s1 + s2 + s3 + ";") ;     
-  return tmp ;
+   expresionstruct tmp ; 
+   tmp.str = codigo.nuevoId() ;
+   codigo.anadirInstruccion(tmp.str + ":=" + s1 + s2 + s3 + ";") ;     
+   return tmp ;
 }
 
 

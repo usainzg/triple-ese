@@ -536,9 +536,9 @@ static const yytype_int8 yyrhs[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    76,    76,    76,    88,    89,    92,    98,    99,   102,
-     106,   112,   115,   120,   127,   144,   164,   174,   177,   184,
-     185,   186,   188,   191,   194,   197,   200,   203,   206,   209,
-     212,   215,   220,   223,   224
+     106,   112,   115,   120,   127,   144,   164,   175,   178,   185,
+     186,   187,   189,   192,   195,   198,   201,   204,   207,   210,
+     213,   216,   221,   224,   225
 };
 #endif
 
@@ -1617,18 +1617,19 @@ yyreduce:
     { 
 	 //Falta su traducción
          codigo.completarInstrucciones((yyvsp[(3) - (4)].expr)->falses, (yyvsp[(4) - (4)].number));
+         (yyval.numlist) = new vector<int>;
          *(yyval.numlist) = (yyvsp[(3) - (4)].expr)->trues;
 	  delete (yyvsp[(3) - (4)].expr);
 	;}
     break;
 
   case 17:
-#line 174 "parser.y"
+#line 175 "parser.y"
     { (yyval.number) = codigo.obtenRef() ; ;}
     break;
 
   case 18:
-#line 177 "parser.y"
+#line 178 "parser.y"
     {
 	(yyval.numlist) = new vector<int>;	
         vector<int> tmp1 ; tmp1.push_back(codigo.obtenRef()) ;
@@ -1637,108 +1638,108 @@ yyreduce:
     break;
 
   case 19:
-#line 184 "parser.y"
-    { (yyval.expr) = new expresionstruct; (yyval.expr)->str = *(yyvsp[(1) - (1)].str); ;}
-    break;
-
-  case 20:
 #line 185 "parser.y"
     { (yyval.expr) = new expresionstruct; (yyval.expr)->str = *(yyvsp[(1) - (1)].str); ;}
     break;
 
-  case 21:
+  case 20:
 #line 186 "parser.y"
+    { (yyval.expr) = new expresionstruct; (yyval.expr)->str = *(yyvsp[(1) - (1)].str); ;}
+    break;
+
+  case 21:
+#line 187 "parser.y"
     { (yyval.expr) = (yyvsp[(2) - (3)].expr); ;}
     break;
 
   case 22:
-#line 188 "parser.y"
+#line 189 "parser.y"
     { (yyval.expr) = new expresionstruct;
 			 *(yyval.expr) = makearithmetic((yyvsp[(1) - (3)].expr)->str,*(yyvsp[(2) - (3)].str),(yyvsp[(3) - (3)].expr)->str) ;
 			delete (yyvsp[(1) - (3)].expr); delete (yyvsp[(3) - (3)].expr); ;}
     break;
 
   case 23:
-#line 191 "parser.y"
+#line 192 "parser.y"
     { (yyval.expr) = new expresionstruct;
 			 *(yyval.expr) = makearithmetic((yyvsp[(1) - (3)].expr)->str,*(yyvsp[(2) - (3)].str),(yyvsp[(3) - (3)].expr)->str) ;
 			delete (yyvsp[(1) - (3)].expr); delete (yyvsp[(3) - (3)].expr); ;}
     break;
 
   case 24:
-#line 194 "parser.y"
+#line 195 "parser.y"
     { (yyval.expr) = new expresionstruct;
 			 *(yyval.expr) = makearithmetic((yyvsp[(1) - (3)].expr)->str,*(yyvsp[(2) - (3)].str),(yyvsp[(3) - (3)].expr)->str) ;
 			delete (yyvsp[(1) - (3)].expr); delete (yyvsp[(3) - (3)].expr); ;}
     break;
 
   case 25:
-#line 197 "parser.y"
+#line 198 "parser.y"
     {(yyval.expr) = new expresionstruct;
 			 *(yyval.expr) = makearithmetic((yyvsp[(1) - (3)].expr)->str,*(yyvsp[(2) - (3)].str),(yyvsp[(3) - (3)].expr)->str) ;
 			delete (yyvsp[(1) - (3)].expr); delete (yyvsp[(3) - (3)].expr); ;}
     break;
 
   case 26:
-#line 200 "parser.y"
+#line 201 "parser.y"
     { (yyval.expr) = new expresionstruct;
 			 *(yyval.expr) = makecomparison((yyvsp[(1) - (3)].expr)->str,*(yyvsp[(2) - (3)].str),(yyvsp[(3) - (3)].expr)->str) ; 
 			delete (yyvsp[(1) - (3)].expr); delete (yyvsp[(3) - (3)].expr); ;}
     break;
 
   case 27:
-#line 203 "parser.y"
+#line 204 "parser.y"
     { (yyval.expr) = new expresionstruct;
 			 *(yyval.expr) = makecomparison((yyvsp[(1) - (3)].expr)->str,*(yyvsp[(2) - (3)].str),(yyvsp[(3) - (3)].expr)->str) ; 
 			delete (yyvsp[(1) - (3)].expr); delete (yyvsp[(3) - (3)].expr); ;}
     break;
 
   case 28:
-#line 206 "parser.y"
+#line 207 "parser.y"
     { (yyval.expr) = new expresionstruct;
 			 *(yyval.expr) = makecomparison((yyvsp[(1) - (3)].expr)->str,*(yyvsp[(2) - (3)].str),(yyvsp[(3) - (3)].expr)->str) ; 
 			delete (yyvsp[(1) - (3)].expr); delete (yyvsp[(3) - (3)].expr); ;}
     break;
 
   case 29:
-#line 209 "parser.y"
+#line 210 "parser.y"
     { (yyval.expr) = new expresionstruct;
 			 *(yyval.expr) = makecomparison((yyvsp[(1) - (3)].expr)->str,*(yyvsp[(2) - (3)].str),(yyvsp[(3) - (3)].expr)->str) ; 
 			delete (yyvsp[(1) - (3)].expr); delete (yyvsp[(3) - (3)].expr); ;}
     break;
 
   case 30:
-#line 212 "parser.y"
+#line 213 "parser.y"
     { (yyval.expr) = new expresionstruct;
 			 *(yyval.expr) = makecomparison((yyvsp[(1) - (3)].expr)->str,*(yyvsp[(2) - (3)].str),(yyvsp[(3) - (3)].expr)->str) ; 
 			delete (yyvsp[(1) - (3)].expr); delete (yyvsp[(3) - (3)].expr); ;}
     break;
 
   case 31:
-#line 215 "parser.y"
+#line 216 "parser.y"
     { (yyval.expr) = new expresionstruct;
 			 *(yyval.expr) = makecomparison((yyvsp[(1) - (3)].expr)->str,*(yyvsp[(2) - (3)].str),(yyvsp[(3) - (3)].expr)->str) ; 
 			delete (yyvsp[(1) - (3)].expr); delete (yyvsp[(3) - (3)].expr); ;}
     break;
 
   case 32:
-#line 220 "parser.y"
+#line 221 "parser.y"
     { (yyval.str) = (yyvsp[(1) - (1)].str) ; ;}
     break;
 
   case 33:
-#line 223 "parser.y"
+#line 224 "parser.y"
     { (yyval.str) = (yyvsp[(1) - (1)].str); ;}
     break;
 
   case 34:
-#line 224 "parser.y"
+#line 225 "parser.y"
     { (yyval.str) = (yyvsp[(1) - (1)].str); ;}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1742 "parser.cpp"
+#line 1743 "parser.cpp"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1952,7 +1953,7 @@ yyreturn:
 }
 
 
-#line 227 "parser.y"
+#line 228 "parser.y"
 
 
 //& es para pasar la direccion

@@ -165,6 +165,7 @@ stmt :  ident TASSIG expr {
 	{ 
 	 //Falta su traducción
          codigo.completarInstrucciones($3->falses, $4);
+         $$ = new vector<int>;
          *$$ = $3->trues;
 	  delete $3;
 	}

@@ -48,7 +48,7 @@
 %token <str> TLPAREN TRPAREN TLBRACE TRBRACE TCOMMA TDOT
 %token <str> TPLUS TMINUS TMUL TDIV
 %token <str> TCOLON TSEMIC TASSIG
-%token <str> RPROGRAM RIS RBEGIN RENDPROGRAM RVAR RINTEGER RFLOAT RENDPROCEDURE RPROCEDURE RIN ROUT RIF RTHEN RELSE RENDIF RGET RPUT_LINE RWHILE RDO RENDWHILE
+%token <str> RPROGRAM RIS RBEGIN RENDPROGRAM RVAR RINTEGER RFLOAT RENDPROCEDURE RPROCEDURE RIN ROUT RIF RTHEN RELSE RENDIF RGET RPUT_LINE RWHILE RDO RENDWHILE REXIT
 //Falta declarar los nuevos tokens
 
 %type <str> ident
@@ -110,10 +110,10 @@ list : ident {
      ;
 
 stmts : stmt TSEMIC  {
-
+                $$ = $1; //$$ = $1
         }
       | stmts stmt TSEMIC  {
-              
+              $$ = unir(*$2, *$$);
         }
       ;
 
@@ -136,6 +136,7 @@ stmt :  ident TASSIG expr {
 	      	delete $2 ;
  		//Falta inicializar el atributo de stmt
                 $$ = new vector<int>;
+                $$ = unir(*$5, *$9);
 		
          }
 
@@ -164,7 +165,7 @@ stmt :  ident TASSIG expr {
 	{ 
 	 //Falta su traducción
          codigo.completarInstrucciones($3->falses, $4);
-         *$$ := $3->trues;
+         *$$ = $3->trues;
 	  delete $3;
 	}
 
@@ -245,11 +246,11 @@ expresionstruct makearithmetic(std::string &s1, std::string &s2, std::string &s3
 
 //Falta la función unir
 vector<int> *unir(vector<int> lis1, vector<int> lis2){
-        int i = 0;
-        for (i; i < lis2.size(); i++){
-                lis1.push_back(lis2[i]);
-        }       
-        return lis1;
+        vector<int> *nueva;
+        nueva = new vector<int>;
+        nueva = &lis1;
+        nueva->insert(nueva->end(), lis2.begin(), lis2.end());
+        return nueva;
 }
 
 

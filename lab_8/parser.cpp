@@ -1564,7 +1564,7 @@ yyreduce:
   case 12:
 #line 115 "parser.y"
     {
-              (yyval.numlist) = unir(*(yyvsp[(2) - (3)].numlist), *(yyval.numlist));
+              (yyval.numlist) = unir(*(yyvsp[(1) - (3)].numlist), *(yyvsp[(2) - (3)].numlist));
         ;}
     break;
 
@@ -1978,7 +1978,7 @@ expresionstruct makearithmetic(std::string &s1, std::string &s2, std::string &s3
 vector<int> *unir(vector<int> lis1, vector<int> lis2){
         vector<int> *nueva;
         nueva = new vector<int>;
-        nueva = &lis1;
+        *nueva = lis1;
         nueva->insert(nueva->end(), lis2.begin(), lis2.end());
         return nueva;
 }

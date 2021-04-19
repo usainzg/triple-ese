@@ -113,7 +113,7 @@ stmts : stmt TSEMIC  {
                 $$ = $1; //$$ = $1
         }
       | stmts stmt TSEMIC  {
-              $$ = unir(*$2, *$$);
+              $$ = unir(*$1, *$2);
         }
       ;
 
@@ -249,7 +249,7 @@ expresionstruct makearithmetic(std::string &s1, std::string &s2, std::string &s3
 vector<int> *unir(vector<int> lis1, vector<int> lis2){
         vector<int> *nueva;
         nueva = new vector<int>;
-        nueva = &lis1;
+        *nueva = lis1;
         nueva->insert(nueva->end(), lis2.begin(), lis2.end());
         return nueva;
 }

@@ -42,6 +42,12 @@ public:
     
     /* Devuelve el numero de la siguiente instruccion. */
     int obten_ref() const;
+
+    std::string ini_nom();
+    std::vector<int> ini_lista(int arg);
+    std::vector<std::string> ini_lista(std::string arg);
+    std::vector<int> *unir(std::vector<int> &list1, std::vector<int> &list2);
+    std::vector<std::string> *unir(std::vector<std::string> &list1, std::vector<std::string> &list2);
 };
 
 #endif

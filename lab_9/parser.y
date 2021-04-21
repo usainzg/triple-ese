@@ -82,8 +82,12 @@ program : RPROGRAM { codigo.anadirInstruccion("prog;" ) ;}
             codigo.anadirInstruccion("halt;");
                     //si stmts es distinto a cero
                     //si no es vacio escribir print de error semantico
-                    if ($6->empty() == false) printf("Error en la semantica\n"); 
-                    codigo.escribir();
+                    if ($7->empty() == false){
+                        printf("Error en la semantica\n");  //comprobacion estatica
+                        yyerror("Exit fuera del bucle");
+                    }else{
+                        codigo.escribir();
+                    }
            }
         ;
 
@@ -175,9 +179,11 @@ stmt :  ident TASSIG expr {
 
         | REXIT M
         {
-          //Sale del bucle inminentemente
-          
-          
+          codigo.anadirInstruccion("goto");
+          $$ = new vector<int>;
+          vector<int> tmp1;
+          tmp1.push_back($2);
+          //falta completar el goto
         }
 
        ;
@@ -207,7 +213,7 @@ expr : ident   { $$ = new expresionstruct; $$->str = *$1; }
 			delete $1; delete $3; }
      | expr TDIV expr   {$$ = new expresionstruct;
                         //comprobar que es distinto de cero
-                        codigo.anadirInstruccion("if " + $3->str + "=0 goto ERRORDIV0");
+                        codigo.anadirInstruccion("if " + $3->str + "=0 goto ERRORDIV0"); //comprobacion dinámica
 			 *$$ = makearithmetic($1->str,*$2,$3->str) ;
 			delete $1; delete $3; }
      | expr TCEQ expr { $$ = new expresionstruct;

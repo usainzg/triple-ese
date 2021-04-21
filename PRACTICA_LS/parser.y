@@ -105,7 +105,7 @@ decl_de_subprogs : decl_de_subprograma decl_de_subprogs
     | /* vacio */
     ;
 
-decl_de_subprograma : RPROCEDURE TIDENTIFIER  { codigo.add_inst(*$1 + " " + *$2)} argumentos declaraciones
+decl_de_subprograma : RPROCEDURE TIDENTIFIER  { codigo.add_inst(*$1 + " " + *$2 + ";"); } argumentos declaraciones
     decl_de_subprogs TLBRACE lista_de_sentencias TRBRACE { codigo.add_inst("endproc;"); }
     ;
 
@@ -124,13 +124,23 @@ clase_par :
     | TCGLE { $$ = new clase_par_strct; $$->tipo = "ref"; } // in out
     ;
 
-resto_lis_de_param : TSEMIC tipo clase_par lista_de_ident resto_lis_de_param
+resto_lis_de_param : TSEMIC tipo clase_par lista_de_ident 
+    { codigo.add_params($4->lnom, $3->tipo, $2->clase); delete $2; delete $3; delete $4; } 
+    resto_lis_de_param
     | /* vacio */
     ;
 
 lista_de_sentencias : sentencia lista_de_sentencias
-    { $$ = new lista_sentencias_strct; $$->exits = *codigo.unir($1->exits, $2->exits); delete $1; delete $2; }
-    | /*vacio*/ { $$ = new lista_sentencias_strct; $$->exits = codigo.ini_lista(0); }
+    { 
+        $$ = new lista_sentencias_strct; 
+        $$->exits = *codigo.unir($1->exits, $2->exits); 
+        $$->skips = *codigo.unir($1->skips, $2->skips);
+        delete $1; delete $2;
+    }
+    | /*vacio*/ 
+    { 
+        $$ = new lista_sentencias_strct; $$->exits = codigo.ini_lista(0); $$->skips = codigo.ini_lista(0); 
+    }
     ;
 
 sentencia : variable TASSIG expr TSEMIC
@@ -177,10 +187,10 @@ sentencia : variable TASSIG expr TSEMIC
         codigo.completar_insts($3->falses, $4->ref);
         $$ = new sentencia_strct;
 		$$->exits = codigo.ini_lista(0);
-        $$->skips = codigo.ini_lista(0);
+        $$->skips = $3->trues;
         delete $3; delete $4;
     }
-    | REXIT TSEMIC
+    | REXIT M TSEMIC
     {
         $$ = new sentencia_strct;
 		$$->exits = codigo.ini_lista(codigo.obten_ref());
@@ -190,7 +200,9 @@ sentencia : variable TASSIG expr TSEMIC
     | RREAD TLPAREN variable TRPAREN TSEMIC
     {
         codigo.add_inst("read " + $3->nom + ";");
-		$$ = new sentencia_strct; $$->exits = codigo.ini_lista(0);
+		$$ = new sentencia_strct; 
+        $$->exits = codigo.ini_lista(0);
+        $$->skips = codigo.ini_lista(0);
 		delete $3;
     }
     | RPRINTLN TLPAREN expr TRPAREN TSEMIC
@@ -199,6 +211,7 @@ sentencia : variable TASSIG expr TSEMIC
 		codigo.add_inst("writeln;");
 		$$ = new sentencia_strct; 
         $$->exits = codigo.ini_lista(0);
+        $$->skips = codigo.ini_lista(0);
 		delete $3;
     }
     ;

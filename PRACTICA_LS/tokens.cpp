@@ -385,16 +385,16 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[100] =
     {   0,
-        0,    0,   41,   39,   38,   38,   39,   17,   18,   32,
-       30,   19,   31,   29,   37,   21,   23,   20,   25,   35,
-       39,   35,   35,   35,   35,   35,   35,   35,   35,   35,
-       15,   16,    0,   34,   28,    0,   37,   24,   27,   26,
-       35,   35,    0,    0,   11,   35,   35,   35,   35,    8,
-       35,   35,   35,   35,   35,   35,   36,   22,    0,    0,
-       35,   35,   35,   35,    2,   35,   35,   35,   35,   35,
-       35,    0,   33,    9,    6,   35,   35,   35,    7,   35,
-       13,   12,   35,   35,    0,   36,    3,   35,   35,   35,
-        5,    4,   35,   35,   35,   10,   14,    1,    0
+        0,    0,   41,   39,   17,   17,   39,   20,   21,   35,
+       33,   22,   34,   32,   38,   24,   26,   23,   28,   36,
+       39,   36,   36,   36,   36,   36,   36,   36,   36,   36,
+       18,   19,    0,   16,   31,    0,   38,   27,   30,   29,
+       36,   36,    0,    0,   11,   36,   36,   36,   36,    8,
+       36,   36,   36,   36,   36,   36,   37,   25,    0,    0,
+       36,   36,   36,   36,    2,   36,   36,   36,   36,   36,
+       36,    0,   15,    9,    6,   36,   36,   36,    7,   36,
+       13,   12,   36,   36,    0,   37,    3,   36,   36,   36,
+        5,    4,   36,   36,   36,   10,   14,    1,    0
 
     } ;
 
@@ -548,8 +548,8 @@ static yyconst flex_int16_t yy_chk[297] =
 /* Table of booleans, true if rule could match eol. */
 static yyconst flex_int32_t yy_rule_can_match_eol[41] =
     {   0,
-0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
     0,     };
 
 static yy_state_type yy_last_accepting_state;
@@ -567,19 +567,20 @@ int yy_flex_debug = 0;
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
 #line 1 "tokens.l"
-#line 4 "tokens.l"
+#line 5 "tokens.l"
  #include <string>
  #include <iostream>
  #include <vector>
- using namespace std ;
+ #include "Structs.hpp"
  #include "parser.hpp" 
+
  using namespace std;
 
  #define TOKEN(t) yylval.str = new string(yytext, yyleng) ; return t 
 
  extern "C" int yywrap() { return(1) ; }  
 
-#line 583 "tokens.cpp"
+#line 584 "tokens.cpp"
 
 #define INITIAL 0
 
@@ -759,9 +760,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
     
-#line 21 "tokens.l"
+#line 23 "tokens.l"
 
-#line 765 "tokens.cpp"
+
+#line 767 "tokens.cpp"
 
 	if ( !(yy_init) )
 		{
@@ -856,208 +858,208 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 22 "tokens.l"
+#line 25 "tokens.l"
 TOKEN(RPROGRAM);
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 23 "tokens.l"
+#line 26 "tokens.l"
 TOKEN(RINTEGER);
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 24 "tokens.l"
+#line 27 "tokens.l"
 TOKEN(RFLOAT);
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 25 "tokens.l"
+#line 28 "tokens.l"
 TOKEN(RWHILE);
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 26 "tokens.l"
+#line 29 "tokens.l"
 TOKEN(RUNTIL);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 27 "tokens.l"
+#line 30 "tokens.l"
 TOKEN(REXIT);
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 28 "tokens.l"
+#line 31 "tokens.l"
 TOKEN(RPROCEDURE);	
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 29 "tokens.l"
+#line 32 "tokens.l"
 TOKEN(RIF);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 30 "tokens.l"
+#line 33 "tokens.l"
 TOKEN(RELSE);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 31 "tokens.l"
+#line 34 "tokens.l"
 TOKEN(RFOREVER);
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 32 "tokens.l"
+#line 35 "tokens.l"
 TOKEN(RDO);
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 33 "tokens.l"
+#line 36 "tokens.l"
 TOKEN(RSKIP);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 34 "tokens.l"
+#line 37 "tokens.l"
 TOKEN(RREAD);
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 35 "tokens.l"
+#line 38 "tokens.l"
 TOKEN(RPRINTLN);
 	YY_BREAK
 case 15:
-YY_RULE_SETUP
-#line 38 "tokens.l"
-TOKEN(TLBRACE);
-	YY_BREAK
-case 16:
-YY_RULE_SETUP
-#line 39 "tokens.l"
-TOKEN(TRBRACE);
-	YY_BREAK
-case 17:
+/* rule 15 can match eol */
 YY_RULE_SETUP
 #line 40 "tokens.l"
-TOKEN(TLPAREN);
+;
+	YY_BREAK
+case 16:
+/* rule 16 can match eol */
+YY_RULE_SETUP
+#line 41 "tokens.l"
+;
+	YY_BREAK
+case 17:
+/* rule 17 can match eol */
+YY_RULE_SETUP
+#line 42 "tokens.l"
+;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 41 "tokens.l"
-TOKEN(TRPAREN);
+#line 44 "tokens.l"
+TOKEN(TLBRACE);
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 42 "tokens.l"
-TOKEN(TCOMMA);
+#line 45 "tokens.l"
+TOKEN(TRBRACE);
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 43 "tokens.l"
-TOKEN(TASSIG);
+#line 46 "tokens.l"
+TOKEN(TLPAREN);
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 44 "tokens.l"
-TOKEN(TSEMIC);
+#line 47 "tokens.l"
+TOKEN(TRPAREN);
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 45 "tokens.l"
-TOKEN(TCGLE);
+#line 48 "tokens.l"
+TOKEN(TCOMMA);
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 46 "tokens.l"
-TOKEN(TCLT);
+#line 49 "tokens.l"
+TOKEN(TASSIG);
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 47 "tokens.l"
-TOKEN(TCLE);
+#line 50 "tokens.l"
+TOKEN(TSEMIC);
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 48 "tokens.l"
-TOKEN(TCGT);
+#line 51 "tokens.l"
+TOKEN(TCGLE);
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 49 "tokens.l"
-TOKEN(TCGE);
+#line 52 "tokens.l"
+TOKEN(TCLT);
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 50 "tokens.l"
-TOKEN(TEQUAL);
+#line 53 "tokens.l"
+TOKEN(TCLE);
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 51 "tokens.l"
-TOKEN(TNEQUAL);
+#line 54 "tokens.l"
+TOKEN(TCGT);
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 52 "tokens.l"
-TOKEN(TDIV);
+#line 55 "tokens.l"
+TOKEN(TCGE);
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 53 "tokens.l"
-TOKEN(TPLUS);
+#line 56 "tokens.l"
+TOKEN(TEQUAL);
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 54 "tokens.l"
-TOKEN(TMINUS);	
+#line 57 "tokens.l"
+TOKEN(TNEQUAL);
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 55 "tokens.l"
-TOKEN(TMUL);
+#line 58 "tokens.l"
+TOKEN(TDIV);
 	YY_BREAK
 case 33:
-/* rule 33 can match eol */
-YY_RULE_SETUP
-#line 58 "tokens.l"
-;
-	YY_BREAK
-case 34:
-/* rule 34 can match eol */
 YY_RULE_SETUP
 #line 59 "tokens.l"
-;
+TOKEN(TPLUS);
+	YY_BREAK
+case 34:
+YY_RULE_SETUP
+#line 60 "tokens.l"
+TOKEN(TMINUS);	
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
 #line 61 "tokens.l"
-TOKEN(TIDENTIFIER) ; 
+TOKEN(TMUL);
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 62 "tokens.l"
-TOKEN(TDOUBLE);
+#line 64 "tokens.l"
+TOKEN(TIDENTIFIER) ; 
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 63 "tokens.l"
-TOKEN(TINTEGER); 
+#line 65 "tokens.l"
+TOKEN(TDOUBLE);
 	YY_BREAK
 case 38:
-/* rule 38 can match eol */
 YY_RULE_SETUP
-#line 65 "tokens.l"
-;
+#line 66 "tokens.l"
+TOKEN(TINTEGER); 
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 66 "tokens.l"
+#line 68 "tokens.l"
 { cout << "Token desconocido: " << yytext << endl; yyterminate();}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 67 "tokens.l"
+#line 69 "tokens.l"
 ECHO;
 	YY_BREAK
-#line 1061 "tokens.cpp"
+#line 1063 "tokens.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2025,140 +2027,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 67 "tokens.l"
-
-/* A Bison parser, made by GNU Bison 2.3.  */
-
-/* Skeleton interface for Bison's Yacc-like parsers in C
-
-   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
-   Free Software Foundation, Inc.
-
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2, or (at your option)
-   any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor,
-   Boston, MA 02110-1301, USA.  */
-
-/* As a special exception, you may create a larger work that contains
-   part or all of the Bison parser skeleton and distribute that work
-   under terms of your choice, so long as that work isn't itself a
-   parser generator using the skeleton or a modified version thereof
-   as a parser skeleton.  Alternatively, if you modify or redistribute
-   the parser skeleton itself, you may (at your option) remove this
-   special exception, which will cause the skeleton and the resulting
-   Bison output files to be licensed under the GNU General Public
-   License without this special exception.
-
-   This special exception was added by the Free Software Foundation in
-   version 2.2 of Bison.  */
-
-/* Tokens.  */
-#ifndef YYTOKENTYPE
-# define YYTOKENTYPE
-   /* Put the tokens into the symbol table, so that GDB and other debuggers
-      know about them.  */
-   enum yytokentype {
-     TIDENTIFIER = 258,
-     TINTEGER = 259,
-     TDOUBLE = 260,
-     TMUL = 261,
-     TDIV = 262,
-     TPLUS = 263,
-     TMINUS = 264,
-     TSEMIC = 265,
-     TASSIG = 266,
-     TLBRACE = 267,
-     TRBRACE = 268,
-     TLPAREN = 269,
-     TRPAREN = 270,
-     TCOMMA = 271,
-     RPROGRAM = 272,
-     RPROCEDURE = 273,
-     RFLOAT = 274,
-     RINTEGER = 275,
-     RWHILE = 276,
-     RUNTIL = 277,
-     RIF = 278,
-     RELSE = 279,
-     RFOREVER = 280,
-     RDO = 281,
-     RSKIP = 282,
-     REXIT = 283,
-     RREAD = 284,
-     RPRINTLN = 285,
-     TCGLE = 286,
-     TCLT = 287,
-     TCLE = 288,
-     TCGT = 289,
-     TCGE = 290,
-     TEQUAL = 291,
-     TNEQUAL = 292
-   };
-#endif
-/* Tokens.  */
-#define TIDENTIFIER 258
-#define TINTEGER 259
-#define TDOUBLE 260
-#define TMUL 261
-#define TDIV 262
-#define TPLUS 263
-#define TMINUS 264
-#define TSEMIC 265
-#define TASSIG 266
-#define TLBRACE 267
-#define TRBRACE 268
-#define TLPAREN 269
-#define TRPAREN 270
-#define TCOMMA 271
-#define RPROGRAM 272
-#define RPROCEDURE 273
-#define RFLOAT 274
-#define RINTEGER 275
-#define RWHILE 276
-#define RUNTIL 277
-#define RIF 278
-#define RELSE 279
-#define RFOREVER 280
-#define RDO 281
-#define RSKIP 282
-#define REXIT 283
-#define RREAD 284
-#define RPRINTLN 285
-#define TCGLE 286
-#define TCLT 287
-#define TCLE 288
-#define TCGT 289
-#define TCGE 290
-#define TEQUAL 291
-#define TNEQUAL 292
-
-
-
-
-#if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE
-#line 20 "parser.y"
-{
-    string *str ; 
-}
-/* Line 1529 of yacc.c.  */
-#line 127 "parser.hpp"
-	YYSTYPE;
-# define yystype YYSTYPE /* obsolescent; will be withdrawn */
-# define YYSTYPE_IS_DECLARED 1
-# define YYSTYPE_IS_TRIVIAL 1
-#endif
-
-extern YYSTYPE yylval;
+#line 69 "tokens.l"
 
 

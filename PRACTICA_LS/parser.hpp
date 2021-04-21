@@ -118,12 +118,21 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 20 "parser.y"
+#line 26 "parser.y"
 {
-    string *str ; 
+    std::string *str;
+    lista_ident_strct *lident;
+    resto_lista_id_strct *rlident;
+    tipo_strct *tp;
+    clase_par_strct *cp;
+    lista_sentencias_strct *lsent;
+    sentencia_strct *sent;
+    m_strct *m;
+    variable_strct *var;
+    expresion_strct *expr; 
 }
 /* Line 1529 of yacc.c.  */
-#line 127 "parser.hpp"
+#line 136 "parser.hpp"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

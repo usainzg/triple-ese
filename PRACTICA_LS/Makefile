@@ -1,20 +1,19 @@
-CFLAGS=-Wall
+CFLAGS=-Wall -g
+FUENTES=parser.cpp main.cpp tokens.cpp Codigo.cpp
 
 all: parser prueba
 
 clean:
-	rm parser.cpp parser.hpp parser tokens.cpp 
+	rm parser.cpp parser.hpp parser tokens.cpp *~
 
-parser.cpp: parser.y
-	bison -d -o $@ $^
+parser.cpp parser.hpp: parser.y 
+	bison -d -o $@ $<
 
-parser.hpp: parser.cpp
+tokens.cpp: tokens.l parser.hpp 
+	lex -o $@ $<
 
-tokens.cpp: tokens.l parser.hpp
-	lex -o $@ $^
-
-parser: parser.cpp main.cpp tokens.cpp
-	g++ $(CFLAGS) -o $@ *.cpp 
+parser: $(FUENTES) Codigo.hpp Structs.hpp
+	g++ $(CFLAGS) -o $@ $(FUENTES) 
 
 prueba:  parser Pruebas/PruebaBuena1.in Pruebas/PruebaBuena2.in Pruebas/PruebaMala1.in Pruebas/PruebaMala2.in
 	./parser <Pruebas/PruebaBuena1.in

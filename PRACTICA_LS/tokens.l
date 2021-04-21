@@ -1,11 +1,13 @@
 %option yylineno 
+%option nounput
 
 %{
  #include <string>
  #include <iostream>
  #include <vector>
- using namespace std ;
+ #include "Structs.hpp"
  #include "parser.hpp" 
+
  using namespace std;
 
  #define TOKEN(t) yylval.str = new string(yytext, yyleng) ; return t 
@@ -19,6 +21,7 @@ digito [0-9]
 letra [a-zA-Z]
 
 %%
+
 program	                TOKEN(RPROGRAM);
 int                     TOKEN(RINTEGER);
 float		            TOKEN(RFLOAT);
@@ -34,6 +37,9 @@ skip                    TOKEN(RSKIP);
 read                    TOKEN(RREAD);
 println                 TOKEN(RPRINTLN);
 
+(\[\*)([^*]|\*+[^*\]])*(\*+\])  ;
+#[^#\n]*\n                      ;
+[ \t\n]                         ;
 
 "{"			            TOKEN(TLBRACE);
 "}"                     TOKEN(TRBRACE);
@@ -55,13 +61,9 @@ println                 TOKEN(RPRINTLN);
 "*"                     TOKEN(TMUL);
 
 
-(\[\*)([^*]|\*+[^*\]])*(\*+\])  ;
-#[^#\n]*\n                      ;
-
 {letra}+(_?{letra}|{digito})*                   TOKEN(TIDENTIFIER) ; 
 {digito}+\.{digito}+([eE][\+\-]?{digito}+)?     TOKEN(TDOUBLE);
 {digito}+                                       TOKEN(TINTEGER); 
 
-[ \t\n]                         ;
 .                       { cout << "Token desconocido: " << yytext << endl; yyterminate();}
 %%

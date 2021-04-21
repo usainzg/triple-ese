@@ -1,29 +1,42 @@
+%error-verbose
+
 %{
    #include <stdio.h>
    #include <iostream>
    #include <vector>
    #include <string>
    using namespace std; 
-
+   
    extern int yylex();
    extern int yylineno;
    extern char *yytext;
    void yyerror (const char *msg) {
-     printf("line %d: %s at '%s'\n", yylineno, msg, yytext) ;
+        printf("line %d: %s\n", yylineno, msg) ;
    }
 
+   #include "Codigo.hpp"
+
+   void print_vector(vector<int> &vec);
+   Codigo codigo;
 %}
 
 /* 
    qué atributos tienen los tokens 
 */
 %union {
-    string *str ; 
+    std::string *str;
+    lista_ident_strct *lident;
+    resto_lista_id_strct *rlident;
+    tipo_strct *tp;
+    clase_par_strct *cp;
+    lista_sentencias_strct *lsent;
+    sentencia_strct *sent;
+    m_strct *m;
+    variable_strct *var;
+    expresion_strct *expr; 
 }
 
-/* 
-   declaración de tokens. Esto debe coincidir con tokens.l 
-*/
+/* declaración de tokens. Esto debe coincidir con tokens.l */
 %token <str> TIDENTIFIER TINTEGER TDOUBLE
 %token <str> TMUL TDIV TPLUS TMINUS
 %token <str> TSEMIC TASSIG TLBRACE TRBRACE TLPAREN TRPAREN TCOMMA
@@ -32,36 +45,32 @@
 %token <str> RWHILE RUNTIL RIF RELSE RFOREVER RDO RSKIP REXIT
 %token <str> RREAD RPRINTLN
 %token <str> TCGLE TCLT TCLE TCGT TCGE  TEQUAL TNEQUAL
-
-/* 
-   declaración de no terminales. Por ej:
-%type <str> program
-%type <str> declaraciones
-%type <str> lista_de_ident
-%type <str> resto_lista_id
-%type <str> tipo
-%type <str> decl_de_subprogs
-%type <str> decl_de_subprograma
-%type <str> argumentos
-%type <str> lista_de_param
-%type <str> clase_par
-%type <str> resto_lis_de_param
-%type <str> lista_de_sentencias
-%type <str> sentencia
-%type <str> variable
-%type <str> expr
-*/
-
+ 
 %nonassoc TCLE TCGT TCGE TEQUAL TNEQUAL
 %left TPLUS TMINUS
 %left TMUL TDIV
+
+/* declaración de no terminales. */
+%type <lident> lista_de_ident
+%type <rlident> resto_lista_id
+%type <tp> tipo
+%type <str> lista_de_param
+%type <cp> clase_par
+%type <lsent> lista_de_sentencias
+%type <sent> sentencia
+%type <var> variable
+%type <expr> expr
+%type <m> M
 
 %start programa
 
 %%
 
-programa : RPROGRAM TIDENTIFIER declaraciones decl_de_subprogs TLBRACE lista_de_sentencias TRBRACE
-      ;
+programa : RPROGRAM TIDENTIFIER 
+    { codigo.add_inst(*$1 + " " + *$2 + ";"); } 
+    declaraciones decl_de_subprogs TLBRACE lista_de_sentencias TRBRACE 
+    { codigo.add_inst("halt;"); codigo.escribir(); }
+    ;
 
 declaraciones : tipo lista_de_ident TSEMIC declaraciones
       | /* vacio */
@@ -105,30 +114,42 @@ lista_de_sentencias : sentencia lista_de_sentencias
       ;
 
 sentencia : TIDENTIFIER TASSIG expr TSEMIC;
-      | RIF expr TLBRACE lista_de_sentencias TRBRACE TSEMIC
-      | RWHILE RFOREVER TLBRACE lista_de_sentencias TRBRACE TSEMIC
-      | RDO TLBRACE lista_de_sentencias TRBRACE RUNTIL expr RELSE TLBRACE lista_de_sentencias TRBRACE TSEMIC
-      | RSKIP RIF expr TSEMIC
-      | REXIT TSEMIC
-      | RREAD TLPAREN variable TRPAREN TSEMIC
-      | RPRINTLN TLPAREN expr TRPAREN TSEMIC
-      ;
+    | RIF expr TLBRACE lista_de_sentencias TRBRACE TSEMIC
+    | RWHILE RFOREVER TLBRACE lista_de_sentencias TRBRACE TSEMIC
+    | RDO TLBRACE lista_de_sentencias TRBRACE RUNTIL expr RELSE TLBRACE lista_de_sentencias TRBRACE TSEMIC
+    | RSKIP RIF expr TSEMIC
+    | REXIT TSEMIC
+    | RREAD TLPAREN variable TRPAREN TSEMIC
+    | RPRINTLN TLPAREN expr TRPAREN TSEMIC
+    ;
 
-variable : TIDENTIFIER
-      ;
+M: { $$ = new m_strct; $$->ref = codigo.obtenRef(); };
 
-expr : expr TEQUAL expr
-      | expr TCGT expr
-      | expr TCLT expr
-      | expr TCGE expr
-      | expr TCLE expr
-      | expr TNEQUAL expr
-      | expr TPLUS expr
-      | expr TMINUS expr
-      | expr TMUL expr
-      | expr TDIV expr
-      | variable
-      | TINTEGER
-      | TDOUBLE
-      | TLPAREN expr TRPAREN
-      ;
+variable : TIDENTIFIER { $$ = new variable_strct; $$->nom = *$1; }
+    ;
+
+expr : 
+    expr TEQUAL expr
+    {
+        $$ = new expresion_strct;
+        $$->nom = codigo.ini_nom();
+        $$->trues = codigo.ini_lista(codigo.obten_ref());
+        $$->falses = codigo.ini_lista(codigo.obten_ref()+1);
+        codigo.add_inst("if " + $1->nom + " == " + $3->nom + " goto");
+        codigo.add_inst("goto");
+        delete $1; delete $3;
+    }
+    | expr TCGT expr
+    | expr TCLT expr
+    | expr TCGE expr
+    | expr TCLE expr
+    | expr TNEQUAL expr
+    | expr TPLUS expr
+    | expr TMINUS expr
+    | expr TMUL expr
+    | expr TDIV expr
+    | variable
+    | TINTEGER
+    | TDOUBLE
+    | TLPAREN expr TRPAREN
+    ;

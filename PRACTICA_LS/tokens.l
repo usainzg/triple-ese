@@ -22,6 +22,10 @@ letra [a-zA-Z]
 
 %%
 
+(\[\*)([^*]|\*+[^*\]])*(\*+\])  ;
+#[^#\n]*\n                      ;
+[ \t\n]                         ;
+
 program	                TOKEN(RPROGRAM);
 int                     TOKEN(RINTEGER);
 float		            TOKEN(RFLOAT);
@@ -36,10 +40,6 @@ do                      TOKEN(RDO);
 skip                    TOKEN(RSKIP);
 read                    TOKEN(RREAD);
 println                 TOKEN(RPRINTLN);
-
-(\[\*)([^*]|\*+[^*\]])*(\*+\])  ;
-#[^#\n]*\n                      ;
-[ \t\n]                         ;
 
 "{"			            TOKEN(TLBRACE);
 "}"                     TOKEN(TRBRACE);

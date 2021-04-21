@@ -1,43 +1,41 @@
 #ifndef STRUCTS
 #define STRUCTS
 
-using namespace std;
-
 
 struct lista_ident_strct {
-    vector<string> lnom;
+    std::vector<std::string> lnom;
 };
 
 struct resto_lista_id_strct {
-    vector<string> lnom;
+    std::vector<std::string> lnom;
 };
 
 struct tipo_strct {
-    string clase;
+    std::string clase;
 };
 
 struct clase_par_strct {
-    string tipo;
+    std::string tipo;
 };
 
 struct lista_sentencias_strct {
-    vector<int> exits;
-    vector<int> skips;
+    std::vector<int> exits;
+    std::vector<int> skips;
 };
 
 struct sentencia_strct {
-    vector<int> exits;
-    vector<int> skips;
+    std::vector<int> exits;
+    std::vector<int> skips;
 };
 
 struct variable_strct {
-    string nom;
+    std::string nom;
 };
 
 struct expresion_strct {
-    string nom;
-    vector<int> trues;
-    vector<int> falses;
+    std::string nom;
+    std::vector<int> trues;
+    std::vector<int> falses;
 };
 
 struct m_strct {

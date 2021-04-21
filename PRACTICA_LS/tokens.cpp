@@ -385,16 +385,16 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[100] =
     {   0,
-        0,    0,   41,   39,   17,   17,   39,   20,   21,   35,
+        0,    0,   41,   39,    3,    3,   39,   20,   21,   35,
        33,   22,   34,   32,   38,   24,   26,   23,   28,   36,
        39,   36,   36,   36,   36,   36,   36,   36,   36,   36,
-       18,   19,    0,   16,   31,    0,   38,   27,   30,   29,
-       36,   36,    0,    0,   11,   36,   36,   36,   36,    8,
+       18,   19,    0,    2,   31,    0,   38,   27,   30,   29,
+       36,   36,    0,    0,   14,   36,   36,   36,   36,   11,
        36,   36,   36,   36,   36,   36,   37,   25,    0,    0,
-       36,   36,   36,   36,    2,   36,   36,   36,   36,   36,
-       36,    0,   15,    9,    6,   36,   36,   36,    7,   36,
-       13,   12,   36,   36,    0,   37,    3,   36,   36,   36,
-        5,    4,   36,   36,   36,   10,   14,    1,    0
+       36,   36,   36,   36,    5,   36,   36,   36,   36,   36,
+       36,    0,    1,   12,    9,   36,   36,   36,   10,   36,
+       16,   15,   36,   36,    0,   37,    6,   36,   36,   36,
+        8,    7,   36,   36,   36,   13,   17,    4,    0
 
     } ;
 
@@ -548,7 +548,7 @@ static yyconst flex_int16_t yy_chk[297] =
 /* Table of booleans, true if rule could match eol. */
 static yyconst flex_int32_t yy_rule_can_match_eol[41] =
     {   0,
-0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 
+1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
     0,     };
 
@@ -857,92 +857,92 @@ do_action:	/* This label is used only to access EOF actions. */
 			goto yy_find_action;
 
 case 1:
+/* rule 1 can match eol */
 YY_RULE_SETUP
 #line 25 "tokens.l"
-TOKEN(RPROGRAM);
+;
 	YY_BREAK
 case 2:
+/* rule 2 can match eol */
 YY_RULE_SETUP
 #line 26 "tokens.l"
-TOKEN(RINTEGER);
+;
 	YY_BREAK
 case 3:
+/* rule 3 can match eol */
 YY_RULE_SETUP
 #line 27 "tokens.l"
-TOKEN(RFLOAT);
+;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 28 "tokens.l"
-TOKEN(RWHILE);
+#line 29 "tokens.l"
+TOKEN(RPROGRAM);
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 29 "tokens.l"
-TOKEN(RUNTIL);
+#line 30 "tokens.l"
+TOKEN(RINTEGER);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 30 "tokens.l"
-TOKEN(REXIT);
+#line 31 "tokens.l"
+TOKEN(RFLOAT);
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 31 "tokens.l"
-TOKEN(RPROCEDURE);	
+#line 32 "tokens.l"
+TOKEN(RWHILE);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 32 "tokens.l"
-TOKEN(RIF);
+#line 33 "tokens.l"
+TOKEN(RUNTIL);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 33 "tokens.l"
-TOKEN(RELSE);
+#line 34 "tokens.l"
+TOKEN(REXIT);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 34 "tokens.l"
-TOKEN(RFOREVER);
+#line 35 "tokens.l"
+TOKEN(RPROCEDURE);	
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 35 "tokens.l"
-TOKEN(RDO);
+#line 36 "tokens.l"
+TOKEN(RIF);
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 36 "tokens.l"
-TOKEN(RSKIP);
+#line 37 "tokens.l"
+TOKEN(RELSE);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 37 "tokens.l"
-TOKEN(RREAD);
+#line 38 "tokens.l"
+TOKEN(RFOREVER);
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 38 "tokens.l"
-TOKEN(RPRINTLN);
+#line 39 "tokens.l"
+TOKEN(RDO);
 	YY_BREAK
 case 15:
-/* rule 15 can match eol */
 YY_RULE_SETUP
 #line 40 "tokens.l"
-;
+TOKEN(RSKIP);
 	YY_BREAK
 case 16:
-/* rule 16 can match eol */
 YY_RULE_SETUP
 #line 41 "tokens.l"
-;
+TOKEN(RREAD);
 	YY_BREAK
 case 17:
-/* rule 17 can match eol */
 YY_RULE_SETUP
 #line 42 "tokens.l"
-;
+TOKEN(RPRINTLN);
 	YY_BREAK
 case 18:
 YY_RULE_SETUP

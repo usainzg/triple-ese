@@ -1,4 +1,4 @@
-CFLAGS=-Wall -g
+CFLAGS=-Wall
 FUENTES=parser.cpp main.cpp tokens.cpp Codigo.cpp
 
 all: parser prueba
@@ -15,7 +15,7 @@ tokens.cpp: tokens.l parser.hpp
 parser: $(FUENTES) Codigo.hpp Structs.hpp
 	g++ $(CFLAGS) -o $@ $(FUENTES) 
 
-prueba:  parser Pruebas/PruebaBuena1.in Pruebas/PruebaBuena2.in Pruebas/PruebaMala1.in Pruebas/PruebaMala2.in
+prueba:
 	./parser <Pruebas/PruebaBuena1.in
 	./parser <Pruebas/PruebaBuena2.in
 	./parser <Pruebas/PruebaMala1.in

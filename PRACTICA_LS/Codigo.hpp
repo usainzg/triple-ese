@@ -6,7 +6,6 @@
 #include <fstream>
 #include <set>
 #include <vector>
-#include "Structs.hpp"
 
 class Codigo {
 

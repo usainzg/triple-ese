@@ -1,4 +1,4 @@
-CFLAGS=-Wall
+CFLAGS=-Wall -g
 FUENTES=parser.cpp main.cpp tokens.cpp Codigo.cpp
 
 all: parser prueba

@@ -37,18 +37,10 @@ void Codigo::add_decls(const vector<string> &id_nombres, const string &tipo_nomb
 
 void Codigo::add_params(const vector<string> &id_nombres, const string &p_tipo, const string &tipo_nombre)
 {
-    string p_aux;
-    if (p_tipo == "=>")
-        p_aux = "ref";
-    else if (p_tipo == "<=")
-        p_aux = "val";
-    else if (p_tipo == "<=>")
-        p_aux = "ref";
-    
     vector<string>::const_iterator iter;
     for (iter = id_nombres.begin(); iter != id_nombres.end(); iter++) 
     {
-        add_inst(p_aux + "_" + tipo_nombre + " " + *iter + ";");
+        add_inst(p_tipo + "_" + tipo_nombre + " " + *iter + ";");
     }
 }
 

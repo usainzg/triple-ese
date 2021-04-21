@@ -1,4 +1,4 @@
-%error-verbose
+%define parse.error verbose
 
 %{
    #include <stdio.h>
@@ -15,8 +15,7 @@
    }
 
    #include "Codigo.hpp"
-   #include "Structs.hpp"
-
+   
    Codigo codigo;
 %}
 
@@ -46,11 +45,14 @@
 %token <str> RREAD RPRINTLN
 %token <str> TCGLE TCLT TCLE TCGT TCGE  TEQUAL TNEQUAL
 
+%nonassoc TEQUAL TNEQUAL TCLE TCGT TCGE 
+%left TPLUS TMINUS
+%left TMUL TDIV
+
 /* declaración de no terminales. */
 %type <lident> lista_de_ident
 %type <rlident> resto_lista_id
 %type <tp> tipo
-%type <str> lista_de_param
 %type <cp> clase_par
 %type <lsent> lista_de_sentencias
 %type <sent> sentencia
@@ -58,9 +60,6 @@
 %type <expr> expr
 %type <m> M
 
-%nonassoc TCLE TCGT TCGE TEQUAL TNEQUAL
-%left TPLUS TMINUS
-%left TMUL TDIV
 
 %start programa
 
@@ -105,7 +104,7 @@ decl_de_subprogs : decl_de_subprograma decl_de_subprogs
     | /* vacio */
     ;
 
-decl_de_subprograma : RPROCEDURE TIDENTIFIER  { codigo.add_inst(*$1 + " " + *$2 + ";"); } argumentos declaraciones
+decl_de_subprograma : RPROCEDURE TIDENTIFIER  { codigo.add_inst(*$1 + " " + *$2 + ";"); } argumentos declaraciones
     decl_de_subprogs TLBRACE lista_de_sentencias TRBRACE { codigo.add_inst("endproc;"); }
     ;
 
@@ -288,7 +287,7 @@ expr :
         codigo.add_inst($$->nom + " := " + $1->nom + " + " + $3->nom + ";");
         $$->trues = codigo.ini_lista(0);
         $$->falses = codigo.ini_lista(0);
-        delete $1; delete $3;
+        //delete $1; delete $3;
     }
     | expr TMINUS expr
     {

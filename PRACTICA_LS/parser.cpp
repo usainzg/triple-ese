@@ -524,9 +524,9 @@ static const yytype_uint16 yyrline[] =
        0,    70,    70,    69,    76,    75,    78,    81,    90,    97,
      100,   101,   104,   105,   108,   108,   112,   113,   117,   116,
      122,   123,   124,   128,   127,   130,   133,   141,   146,   154,
-     163,   173,   185,   193,   200,   208,   219,   221,   225,   235,
-     245,   255,   265,   275,   285,   294,   303,   312,   321,   329,
-     336,   343
+     163,   172,   184,   192,   199,   207,   218,   220,   224,   234,
+     244,   254,   264,   274,   284,   293,   302,   311,   320,   328,
+     335,   342
 };
 #endif
 
@@ -1662,14 +1662,13 @@ yyreduce:
 		(yyval.sent)->exits = codigo.ini_lista(0);
         (yyval.sent)->skips = codigo.ini_lista(0);
 		delete (yyvsp[(4) - (8)].m); delete (yyvsp[(5) - (8)].lsent); delete (yyvsp[(7) - (8)].m);
-
     ;}
     break;
 
   case 31:
-#line 174 "parser.y"
+#line 173 "parser.y"
     {
-        codigo.completar_insts((yyvsp[(8) - (15)].expr)->trues, (yyvsp[(7) - (15)].m)->ref);
+        codigo.completar_insts((yyvsp[(8) - (15)].expr)->trues, (yyvsp[(11) - (15)].m)->ref);
         codigo.completar_insts((yyvsp[(8) - (15)].expr)->falses, (yyvsp[(3) - (15)].m)->ref);
 		codigo.completar_insts((yyvsp[(4) - (15)].lsent)->skips, (yyvsp[(7) - (15)].m)->ref);
         codigo.completar_insts((yyvsp[(4) - (15)].lsent)->exits, (yyvsp[(14) - (15)].m)->ref);
@@ -1677,12 +1676,12 @@ yyreduce:
 		(yyval.sent) = new sentencia_strct;
 		(yyval.sent)->exits = codigo.ini_lista(0);
         (yyval.sent)->skips = codigo.ini_lista(0);
-		delete (yyvsp[(3) - (15)].m); delete (yyvsp[(4) - (15)].lsent); delete (yyvsp[(7) - (15)].m); delete (yyvsp[(8) - (15)].expr); delete (yyvsp[(12) - (15)].lsent); delete (yyvsp[(14) - (15)].m);
+		delete (yyvsp[(3) - (15)].m); delete (yyvsp[(4) - (15)].lsent); delete (yyvsp[(7) - (15)].m); delete (yyvsp[(8) - (15)].expr); delete (yyvsp[(11) - (15)].m); delete (yyvsp[(12) - (15)].lsent); delete (yyvsp[(14) - (15)].m);
     ;}
     break;
 
   case 32:
-#line 186 "parser.y"
+#line 185 "parser.y"
     {
         codigo.completar_insts((yyvsp[(3) - (5)].expr)->falses, (yyvsp[(4) - (5)].m)->ref);
         (yyval.sent) = new sentencia_strct;
@@ -1693,7 +1692,7 @@ yyreduce:
     break;
 
   case 33:
-#line 194 "parser.y"
+#line 193 "parser.y"
     {
         (yyval.sent) = new sentencia_strct;
 		(yyval.sent)->exits = codigo.ini_lista(codigo.obten_ref());
@@ -1703,7 +1702,7 @@ yyreduce:
     break;
 
   case 34:
-#line 201 "parser.y"
+#line 200 "parser.y"
     {
         codigo.add_inst("read " + (yyvsp[(3) - (5)].var)->nom + ";");
 		(yyval.sent) = new sentencia_strct; 
@@ -1714,7 +1713,7 @@ yyreduce:
     break;
 
   case 35:
-#line 209 "parser.y"
+#line 208 "parser.y"
     {
         codigo.add_inst("write " + (yyvsp[(3) - (5)].expr)->nom + ";");
 		codigo.add_inst("writeln;");
@@ -1726,17 +1725,17 @@ yyreduce:
     break;
 
   case 36:
-#line 219 "parser.y"
+#line 218 "parser.y"
     { (yyval.m) = new m_strct; (yyval.m)->ref = codigo.obten_ref(); ;}
     break;
 
   case 37:
-#line 221 "parser.y"
+#line 220 "parser.y"
     { (yyval.var) = new variable_strct; (yyval.var)->nom = *(yyvsp[(1) - (1)].str); ;}
     break;
 
   case 38:
-#line 226 "parser.y"
+#line 225 "parser.y"
     {
         (yyval.expr) = new expresion_strct;
         (yyval.expr)->nom = codigo.ini_nom();
@@ -1749,7 +1748,7 @@ yyreduce:
     break;
 
   case 39:
-#line 236 "parser.y"
+#line 235 "parser.y"
     {
         (yyval.expr) = new expresion_strct;
         (yyval.expr)->nom = codigo.ini_nom();
@@ -1762,7 +1761,7 @@ yyreduce:
     break;
 
   case 40:
-#line 246 "parser.y"
+#line 245 "parser.y"
     {
         (yyval.expr) = new expresion_strct;
         (yyval.expr)->nom = codigo.ini_nom();
@@ -1775,7 +1774,7 @@ yyreduce:
     break;
 
   case 41:
-#line 256 "parser.y"
+#line 255 "parser.y"
     {
         (yyval.expr) = new expresion_strct;
         (yyval.expr)->nom = codigo.ini_nom();
@@ -1788,7 +1787,7 @@ yyreduce:
     break;
 
   case 42:
-#line 266 "parser.y"
+#line 265 "parser.y"
     {
         (yyval.expr) = new expresion_strct;
         (yyval.expr)->nom = codigo.ini_nom();
@@ -1801,7 +1800,7 @@ yyreduce:
     break;
 
   case 43:
-#line 276 "parser.y"
+#line 275 "parser.y"
     {
         (yyval.expr) = new expresion_strct;
         (yyval.expr)->nom = codigo.ini_nom();
@@ -1814,7 +1813,7 @@ yyreduce:
     break;
 
   case 44:
-#line 286 "parser.y"
+#line 285 "parser.y"
     {
         (yyval.expr) = new expresion_strct;
         (yyval.expr)->nom = codigo.nuevo_id();
@@ -1826,7 +1825,7 @@ yyreduce:
     break;
 
   case 45:
-#line 295 "parser.y"
+#line 294 "parser.y"
     {
         (yyval.expr) = new expresion_strct;
         (yyval.expr)->nom = codigo.nuevo_id();
@@ -1838,7 +1837,7 @@ yyreduce:
     break;
 
   case 46:
-#line 304 "parser.y"
+#line 303 "parser.y"
     {
         (yyval.expr) = new expresion_strct;
         (yyval.expr)->nom = codigo.nuevo_id();
@@ -1850,7 +1849,7 @@ yyreduce:
     break;
 
   case 47:
-#line 313 "parser.y"
+#line 312 "parser.y"
     {
         (yyval.expr) = new expresion_strct;
         (yyval.expr)->nom = codigo.nuevo_id();
@@ -1862,7 +1861,7 @@ yyreduce:
     break;
 
   case 48:
-#line 322 "parser.y"
+#line 321 "parser.y"
     {
         (yyval.expr) = new expresion_strct;
         (yyval.expr)->nom = (yyvsp[(1) - (1)].var)->nom;
@@ -1873,7 +1872,7 @@ yyreduce:
     break;
 
   case 49:
-#line 330 "parser.y"
+#line 329 "parser.y"
     {
         (yyval.expr) = new expresion_strct;
         (yyval.expr)->nom = *(yyvsp[(1) - (1)].str);
@@ -1883,7 +1882,7 @@ yyreduce:
     break;
 
   case 50:
-#line 337 "parser.y"
+#line 336 "parser.y"
     {
         (yyval.expr) = new expresion_strct;
         (yyval.expr)->nom = *(yyvsp[(1) - (1)].str);
@@ -1893,7 +1892,7 @@ yyreduce:
     break;
 
   case 51:
-#line 344 "parser.y"
+#line 343 "parser.y"
     {
         (yyval.expr) = (yyvsp[(2) - (3)].expr); delete (yyvsp[(2) - (3)].expr);
     ;}
@@ -1901,7 +1900,7 @@ yyreduce:
 
 
 /* Line 1267 of yacc.c.  */
-#line 1905 "parser.cpp"
+#line 1904 "parser.cpp"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);

@@ -168,11 +168,10 @@ sentencia : variable TASSIG expr TSEMIC
 		$$->exits = codigo.ini_lista(0);
         $$->skips = codigo.ini_lista(0);
 		delete $4; delete $5; delete $7;
-
     }
     | RDO TLBRACE M lista_de_sentencias TRBRACE RUNTIL M expr RELSE TLBRACE M lista_de_sentencias TRBRACE M TSEMIC
     {
-        codigo.completar_insts($8->trues, $7->ref);
+        codigo.completar_insts($8->trues, $11->ref);
         codigo.completar_insts($8->falses, $3->ref);
 		codigo.completar_insts($4->skips, $7->ref);
         codigo.completar_insts($4->exits, $14->ref);
@@ -180,7 +179,7 @@ sentencia : variable TASSIG expr TSEMIC
 		$$ = new sentencia_strct;
 		$$->exits = codigo.ini_lista(0);
         $$->skips = codigo.ini_lista(0);
-		delete $3; delete $4; delete $7; delete $8; delete $12; delete $14;
+		delete $3; delete $4; delete $7; delete $8; delete $11; delete $12; delete $14;
     }
     | RSKIP RIF expr M TSEMIC
     {

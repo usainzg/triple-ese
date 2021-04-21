@@ -81,7 +81,8 @@ program : RPROGRAM { codigo.anadirInstruccion("prog;" ) ;}
 	      RENDPROGRAM TSEMIC {
             codigo.anadirInstruccion("halt;");
                     //si stmts es distinto a cero
-                    if ($6->size() != 0)
+                    //si no es vacio escribir print de error semantico
+                    if ($6->empty() != 0) printf("Error semantico.\n");
 		    codigo.escribir() ; 
            }
         ;

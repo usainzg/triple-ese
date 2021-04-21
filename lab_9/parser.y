@@ -179,10 +179,9 @@ stmt :  ident TASSIG expr {
 
         | REXIT M
         {
-          codigo.anadirInstruccion("goto");
           $$ = new vector<int>;
-          vector<int> tmp1;
-          tmp1.push_back($2);
+          $$->push_back($2);
+          codigo.anadirInstruccion("goto");
           //falta completar el goto
         }
 

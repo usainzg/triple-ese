@@ -1516,8 +1516,8 @@ yyreduce:
             codigo.anadirInstruccion("halt;");
                     //si stmts es distinto a cero
                     //si no es vacio escribir print de error semantico
-                    if ((yyvsp[(6) - (9)].str)->empty() != 0) printf("Error semantico.\n");
-		    codigo.escribir() ; 
+                    if ((yyvsp[(6) - (9)].str)->empty() == false) printf("Error en la semantica\n"); 
+                    codigo.escribir();
            ;}
     break;
 

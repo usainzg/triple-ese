@@ -82,8 +82,8 @@ program : RPROGRAM { codigo.anadirInstruccion("prog;" ) ;}
             codigo.anadirInstruccion("halt;");
                     //si stmts es distinto a cero
                     //si no es vacio escribir print de error semantico
-                    if ($6->empty() != 0) printf("Error semantico.\n");
-		    codigo.escribir() ; 
+                    if ($6->empty() == false) printf("Error en la semantica\n"); 
+                    codigo.escribir();
            }
         ;
 

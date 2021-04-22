@@ -2,102 +2,150 @@
 
 using namespace std;
 
-Codigo::Codigo() 
+const string Codigo::NUMERO_INT = "ent";
+const string Codigo::NUMERO_FLOAT = "real";
+const string Codigo::NUMERO = NUMERO_INT + NUMERO_FLOAT;
+const string Codigo::BOOLEANO = "bool";
+
+/****************/
+/* Constructora */
+/****************/
+
+Codigo::Codigo()
 {
-    sig_id = 1; // Primer id en la constructora.
+    siguienteIdentificador = 1;
 }
 
-int Codigo::sig_instruccion() const 
+/************************/
+/* siguienteInstruccion */
+/************************/
+
+int Codigo::siguienteInstruccion() const
 {
     return instrucciones.size() + 1;
 }
 
-string Codigo::nuevo_id() 
+/***********/
+/* nuevoId */
+/***********/
+
+string Codigo::nuevoId()
 {
     stringstream cadena;
-    cadena << "_t" << sig_id++; // "_t" + "xx" => "_t1", "_t2", ...
+    cadena << "_t" << siguienteIdentificador++;
     return cadena.str();
 }
 
-void Codigo::add_inst(const string &inst) 
+/*********************/
+/* anadirInstruccion */
+/*********************/
+
+void Codigo::anadirInstruccion(const string &instruccion)
 {
     stringstream cadena;
-    cadena << sig_instruccion() << ": " << inst;
+    cadena << siguienteInstruccion() << ": " << instruccion;
     instrucciones.push_back(cadena.str());
 }
 
-void Codigo::add_decls(const vector<string> &id_nombres, const string &tipo_nombre) 
+/***********************/
+/* anadirDeclaraciones */
+/***********************/
+
+void Codigo::anadirDeclaraciones(const vector<string> &idNombres, const string &tipoNombre)
 {
     vector<string>::const_iterator iter;
-    for (iter = id_nombres.begin(); iter != id_nombres.end(); iter++) 
+    for (iter = idNombres.begin(); iter != idNombres.end(); iter++)
     {
-        add_inst(tipo_nombre + " " + *iter + ";");
+        anadirInstruccion(tipoNombre + " " + *iter + ";");
     }
 }
 
-void Codigo::add_params(const vector<string> &id_nombres, const string &p_tipo, const string &tipo_nombre)
+/*********************/
+/* anadirParametros  */
+/*********************/
+
+void Codigo::anadirParametros(const vector<string> &idNombres, const string &pTipo, const string &tipoNombre)
 {
     vector<string>::const_iterator iter;
-    for (iter = id_nombres.begin(); iter != id_nombres.end(); iter++) 
+    for (iter = idNombres.begin(); iter != idNombres.end(); iter++)
     {
-        add_inst(p_tipo + "_" + tipo_nombre + " " + *iter + ";");
+        anadirInstruccion(pTipo + "_" + tipoNombre + " " + *iter + ";");
     }
 }
 
-void Codigo::completar_insts(vector<int> &num_insts, const int ref)
+/**************************/
+/* completarInstrucciones */
+/**************************/
+
+void Codigo::completarInstrucciones(vector<int> &numerosInstrucciones, const int referencia)
 {
     stringstream cadena;
     vector<int>::iterator iter;
-    cadena << " " << ref;
-    for (iter = num_insts.begin(); iter != num_insts.end(); iter++)
+    cadena << " " << referencia;
+    for (iter = numerosInstrucciones.begin(); iter != numerosInstrucciones.end(); iter++)
     {
         instrucciones[*iter - 1].append(cadena.str() + ";");
     }
 }
 
-void Codigo::escribir() const // TODO: cambiar para escribir en el fichero!
+/************/
+/* escribir */
+/************/
+
+void Codigo::escribir() const
 {
+    //const string nombreFichero("output.txt");
+    //fstream f(nombreFichero.c_str(), fstream::out);
     vector<string>::const_iterator iter;
     for (iter = instrucciones.begin(); iter != instrucciones.end(); iter++)
     {
         cout << *iter << endl;
+        //f << *iter << endl;
     }
+    //f.close();
 }
 
-int Codigo::obten_ref() const
+/************/
+/* obtenRef */
+/************/
+
+int Codigo::obtenRef() const
 {
-    return sig_instruccion();
+    return siguienteInstruccion();
 }
 
-string Codigo::ini_nom()
-{
+string Codigo::iniNom() {
     return "";
 }
 
-vector<int> Codigo::ini_lista(int arg)
+vector<int> Codigo::iniLista(const int &arg)
 {
-    vector<int> res;
+    vector<int> result;
     if (arg != 0)
-        res.push_back(arg);
-    return res;
+        result.push_back(arg);
+    return result;
 }
 
-vector<string> Codigo::ini_lista(string arg)
+vector<string> Codigo::iniLista(const string &arg)
 {
-    vector<string> res;
+    vector<string> result;
     if (arg != "")
-        res.push_back(arg);
-    return res;
+        result.push_back(arg);
+    return result;
 }
 
-vector<int> *Codigo::unir(vector<int> &list1, vector<int> &list2) 
+bool esVacia(const vector<int> &lista) {
+    return lista.empty();
+}
+
+vector<int> *Codigo::unir(const vector<int> &list1, const vector<int> &list2) 
 {
     vector<int> *merged = new vector<int>(list1);
     merged->insert(merged->end(),list2.begin(),list2.end());
     return merged;
 }
 
-vector<string> *Codigo::unir(vector<string> &list1, vector<string> &list2) 
+vector<string> *Codigo::unir(const vector<string> &list1, const vector<string> &list2) 
 {
     vector<string> *merged = new vector<string>(list1);
     merged->insert(merged->end(),list2.begin(),list2.end());

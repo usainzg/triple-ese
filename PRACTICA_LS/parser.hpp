@@ -61,34 +61,34 @@ extern int yydebug;
     TDIV = 262,                    /* TDIV  */
     TPLUS = 263,                   /* TPLUS  */
     TMINUS = 264,                  /* TMINUS  */
-    TSEMIC = 265,                  /* TSEMIC  */
-    TASSIG = 266,                  /* TASSIG  */
-    TLBRACE = 267,                 /* TLBRACE  */
-    TRBRACE = 268,                 /* TRBRACE  */
-    TLPAREN = 269,                 /* TLPAREN  */
-    TRPAREN = 270,                 /* TRPAREN  */
-    TCOMMA = 271,                  /* TCOMMA  */
-    RPROGRAM = 272,                /* RPROGRAM  */
-    RPROCEDURE = 273,              /* RPROCEDURE  */
-    RFLOAT = 274,                  /* RFLOAT  */
-    RINTEGER = 275,                /* RINTEGER  */
-    RWHILE = 276,                  /* RWHILE  */
-    RUNTIL = 277,                  /* RUNTIL  */
-    RIF = 278,                     /* RIF  */
-    RELSE = 279,                   /* RELSE  */
-    RFOREVER = 280,                /* RFOREVER  */
-    RDO = 281,                     /* RDO  */
-    RSKIP = 282,                   /* RSKIP  */
-    REXIT = 283,                   /* REXIT  */
-    RREAD = 284,                   /* RREAD  */
-    RPRINTLN = 285,                /* RPRINTLN  */
-    TCGLE = 286,                   /* TCGLE  */
-    TCLT = 287,                    /* TCLT  */
-    TCLE = 288,                    /* TCLE  */
-    TCGT = 289,                    /* TCGT  */
-    TCGE = 290,                    /* TCGE  */
-    TEQUAL = 291,                  /* TEQUAL  */
-    TNEQUAL = 292                  /* TNEQUAL  */
+    TCGLE = 265,                   /* TCGLE  */
+    TCLT = 266,                    /* TCLT  */
+    TCLE = 267,                    /* TCLE  */
+    TCGT = 268,                    /* TCGT  */
+    TCGE = 269,                    /* TCGE  */
+    TEQUAL = 270,                  /* TEQUAL  */
+    TNEQUAL = 271,                 /* TNEQUAL  */
+    TSEMIC = 272,                  /* TSEMIC  */
+    TASSIG = 273,                  /* TASSIG  */
+    TLBRACE = 274,                 /* TLBRACE  */
+    TRBRACE = 275,                 /* TRBRACE  */
+    TLPAREN = 276,                 /* TLPAREN  */
+    TRPAREN = 277,                 /* TRPAREN  */
+    TCOMMA = 278,                  /* TCOMMA  */
+    RPROGRAM = 279,                /* RPROGRAM  */
+    RPROCEDURE = 280,              /* RPROCEDURE  */
+    RFLOAT = 281,                  /* RFLOAT  */
+    RINTEGER = 282,                /* RINTEGER  */
+    RWHILE = 283,                  /* RWHILE  */
+    RUNTIL = 284,                  /* RUNTIL  */
+    RIF = 285,                     /* RIF  */
+    RELSE = 286,                   /* RELSE  */
+    RFOREVER = 287,                /* RFOREVER  */
+    RDO = 288,                     /* RDO  */
+    RSKIP = 289,                   /* RSKIP  */
+    REXIT = 290,                   /* REXIT  */
+    RREAD = 291,                   /* RREAD  */
+    RPRINTLN = 292                 /* RPRINTLN  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -100,15 +100,15 @@ union YYSTYPE
 #line 25 "parser.y"
 
     std::string *str;
-    lista_ident_strct *lident;
-    resto_lista_id_strct *rlident;
-    tipo_strct *tp;
-    clase_par_strct *cp;
-    lista_sentencias_strct *lsent;
-    sentencia_strct *sent;
-    m_strct *m;
-    variable_strct *var;
-    expresion_strct *expr; 
+    lista_de_identstruct *lident;
+    resto_lista_idstruct *rlident;
+    tipostruct *tp;
+    clase_parstruct *cp;
+    lista_de_sentenciasstruct *lsent;
+    sentenciastruct *sent;
+    mstruct *m;
+    variablestruct *var;
+    expresionstruct *expr; 
 
 #line 114 "parser.hpp"
 

@@ -1,45 +1,46 @@
-#ifndef STRUCTS
-#define STRUCTS
+#ifndef STRUCTS_HPP_
+#define STRUCTS_HPP_
 
-
-struct lista_ident_strct {
-    std::vector<std::string> lnom;
+struct lista_de_identstruct{
+	std::vector<std::string> lnom;
 };
 
-struct resto_lista_id_strct {
-    std::vector<std::string> lnom;
+struct resto_lista_idstruct{
+	std::vector<std::string> lnom;
 };
 
-struct tipo_strct {
-    std::string clase;
+struct tipostruct{
+	std::string clase;
 };
 
-struct clase_par_strct {
-    std::string tipo;
+struct clase_parstruct{
+	std::string tipo;	
 };
 
-struct lista_sentencias_strct {
-    std::vector<int> exits;
+struct lista_de_sentenciasstruct
+{
+	std::vector<int> exits;
     std::vector<int> skips;
 };
 
-struct sentencia_strct {
-    std::vector<int> exits;
+struct sentenciastruct{
+	std::vector<int> exits;	
     std::vector<int> skips;
 };
 
-struct variable_strct {
-    std::string nom;
+struct mstruct{
+	int ref;	
 };
 
-struct expresion_strct {
-    std::string nom;
-    std::vector<int> trues;
-    std::vector<int> falses;
+struct variablestruct{
+	std::string nom;
+	std::string tipo;
 };
 
-struct m_strct {
-    int ref;
+struct expresionstruct {
+  std::string nom ;
+  std::string tipo ;
+  std::vector<int> trues ;
+  std::vector<int> falses ;
 };
-
-#endif
+#endif /* STRUCTS_HPP_ */
